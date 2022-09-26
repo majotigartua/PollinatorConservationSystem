@@ -58,12 +58,12 @@ public class FXMLLoginController implements Initializable {
         stage.show();
     }
     
-    public boolean validateEmptyFields() {
+    public boolean validateEmptyField() {
         return (textFieldUsername.getText().isEmpty() || passwordFieldPassword.getText().isEmpty()) ? true : false;
     }
     
     public void validateLogin() {
-        if (validateEmptyFields()) {
+        if (validateEmptyField()) {
             labelFailedLogin.setVisible(true);
         }
     }
