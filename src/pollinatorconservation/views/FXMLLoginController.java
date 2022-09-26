@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -29,7 +30,9 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private TextField textFieldUsername;
     @FXML
-    private PasswordField textFieldPassword;
+    private PasswordField passwordFieldPassword;
+    @FXML
+    private Label labelFailedLogin;
 
     /**
      * Initializes the controller class.
@@ -41,6 +44,7 @@ public class FXMLLoginController implements Initializable {
 
     @FXML
     private void clickButtonLogin(ActionEvent event) {
+        validateLogin();
     }
 
     @FXML
@@ -52,6 +56,16 @@ public class FXMLLoginController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Sistema para la Divulgación Científica sobre la Conservación de Polinizadores");
         stage.show();
+    }
+    
+    public boolean validateEmptyFields() {
+        return (textFieldUsername.getText().isEmpty() || passwordFieldPassword.getText().isEmpty()) ? true : false;
+    }
+    
+    public void validateLogin() {
+        if (validateEmptyFields()) {
+            labelFailedLogin.setVisible(true);
+        }
     }
     
 }
