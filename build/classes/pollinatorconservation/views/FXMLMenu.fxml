@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLMenuController">
+   <children>
+      <Label layoutX="1104.0" layoutY="27.0" onMouseClicked="#clickButtonLogin" text="Ingresar" textFill="#6b6b6b" underline="true">
+         <font>
+            <Font name="DengXian Light" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="16.0" text="Sistema para la Divulgación Científica sobre la Conservación de Polinizadores" textFill="#808080">
+         <font>
+            <Font name="DengXian Regular" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="39.0" prefHeight="23.0" prefWidth="215.0" text="Instituto de Ecología A.C." textFill="#808080">
+         <font>
+            <Font name="DengXian Regular" size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
