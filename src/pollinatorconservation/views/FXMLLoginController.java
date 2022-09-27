@@ -54,7 +54,7 @@ public class FXMLLoginController implements Initializable {
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("FXMLMenu.fxml")));
         
         stage.setScene(scene);
-        stage.setTitle("Sistema para la Divulgación Científica sobre la Conservación de Polinizadores");
+        stage.setTitle("Sistema de Divulgación Científica sobre la Conservación de Polinizadores");
         stage.show();
     }
     
