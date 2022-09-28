@@ -9,7 +9,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLMenuController">
    <top>
       <HBox prefHeight="52.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
@@ -37,7 +36,7 @@
       </HBox>
    </top>
    <center>
-      <HBox prefHeight="705.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="hBoxSpecies" prefHeight="705.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
          <children>
             <ScrollPane prefHeight="754.0" prefWidth="1311.0">
                <content>
