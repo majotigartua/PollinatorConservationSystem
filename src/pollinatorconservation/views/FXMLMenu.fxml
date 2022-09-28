@@ -9,22 +9,46 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLMenuController">
-   <children>
-      <Label layoutX="1104.0" layoutY="27.0" onMouseClicked="#clickButtonLogin" text="Ingresar" textFill="#6b6b6b">
-         <font>
-            <Font name="DengXian Light" size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="25.0" layoutY="16.0" text="Sistema para la Divulgación Científica sobre la Conservación de Polinizadores" textFill="#808080">
-         <font>
-            <Font name="DengXian Regular" size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="25.0" layoutY="39.0" prefHeight="23.0" prefWidth="215.0" text="Instituto de Ecología A.C." textFill="#808080">
-         <font>
-            <Font name="DengXian Regular" size="19.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLMenuController">
+   <top>
+      <HBox prefHeight="52.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="46.0" prefWidth="697.0" text="Sistema para la Divulgación Científica sobre la Conservación de Polinizadores" textFill="GREY">
+               <font>
+                  <Font name="DengXian Regular" size="19.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="46.0" prefWidth="534.0">
+               <children>
+                  <TextField onKeyPressed="#pressKeySearch" prefHeight="37.0" prefWidth="516.0" promptText="Buscar">
+                     <font>
+                        <Font name="DengXian Light" size="19.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label alignment="CENTER" onMouseClicked="#clickLabelLogin" prefHeight="46.0" prefWidth="110.0" text="Ingresar" textFill="GREY">
+               <font>
+                  <Font name="DengXian Regular" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <HBox prefHeight="705.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane prefHeight="754.0" prefWidth="1311.0">
+               <content>
+                  <GridPane fx:id="gridPaneSpecies" prefHeight="0.0" prefWidth="1.0">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
