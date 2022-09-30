@@ -1,9 +1,3 @@
-/*
-
- * Author: Sebastian Bello Trejo
- * Date: 25/09/2022
- * Description: Project start class.
- */
 package pollinatorconservation;
 
 import javafx.application.Application;
@@ -13,15 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-/**
- *
- * @author sebtr
- */
 public class PollinatorConservation extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("views/FXMLMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/FXMLMainMenu.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -29,10 +19,7 @@ public class PollinatorConservation extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         launch(args);
     }

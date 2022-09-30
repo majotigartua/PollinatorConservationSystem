@@ -27,11 +27,6 @@
                   </TextField>
                </children>
             </HBox>
-            <Label alignment="CENTER" onMouseClicked="#clickLabelLogin" prefHeight="46.0" prefWidth="110.0" text="Ingresar" textFill="GREY">
-               <font>
-                  <Font name="DengXian Regular" size="19.0" />
-               </font>
-            </Label>
          </children>
       </HBox>
    </top>
