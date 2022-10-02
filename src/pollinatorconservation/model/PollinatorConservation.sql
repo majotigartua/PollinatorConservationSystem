@@ -81,12 +81,9 @@ CREATE TABLE `floweringplant` (
   `genericName` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `description` text NOT NULL,
   `idFamily` int NOT NULL,
-  `username` varchar(30) NOT NULL,
   PRIMARY KEY (`scientificName`),
   KEY `FK_FloweringPlant_Family_idx` (`idFamily`),
-  KEY `FK_FloweringPlant_User_idx` (`username`),
-  CONSTRAINT `FK_FloweringPlant_Family` FOREIGN KEY (`idFamily`) REFERENCES `family` (`idFamily`),
-  CONSTRAINT `FK_FloweringPlant_User` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
+  CONSTRAINT `FK_FloweringPlant_Family` FOREIGN KEY (`idFamily`) REFERENCES `family` (`idFamily`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -96,6 +93,7 @@ CREATE TABLE `floweringplant` (
 
 LOCK TABLES `floweringplant` WRITE;
 /*!40000 ALTER TABLE `floweringplant` DISABLE KEYS */;
+INSERT INTO `floweringplant` VALUES ('Amborella trichopoda','Amborella','Es un arbusto de gran porte o arbolito, algo trepador, siempreverde, de hasta 8 m. de altura, tomento de pelos uniseriados multicelulares (a veces unicelulares). Sus hojas son alternas, espiraladas a dísticas en la madurez, pecioladas, sin estípulas, de margen ondulado a dentado, a veces pinnatífidas, pinnatinervias, las venas conexas cerca del margen, estomas paracíticos a anomocíticos, sólo en la superficie abaxial.',39);
 /*!40000 ALTER TABLE `floweringplant` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,12 +133,9 @@ CREATE TABLE `pollinator` (
   `genericName` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `description` text NOT NULL,
   `idFamily` int NOT NULL,
-  `username` varchar(30) NOT NULL,
   PRIMARY KEY (`scientificName`),
   KEY `FK_Pollinator_Family_idx` (`idFamily`),
-  KEY `FK_Pollinator_User_idx` (`username`),
-  CONSTRAINT `FK_Pollinator_Familiy` FOREIGN KEY (`idFamily`) REFERENCES `family` (`idFamily`),
-  CONSTRAINT `FK_Pollinator_User` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
+  CONSTRAINT `FK_Pollinator_Familiy` FOREIGN KEY (`idFamily`) REFERENCES `family` (`idFamily`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -217,4 +212,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-02  9:07:56
+-- Dump completed on 2022-10-02 18:20:32

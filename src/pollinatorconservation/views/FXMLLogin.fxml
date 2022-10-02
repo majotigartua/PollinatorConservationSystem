@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,6 +10,21 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLLoginController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0" />
+      <ImageView fitHeight="400.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/login.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="386.0" layoutY="208.0" prefHeight="19.0" prefWidth="122.0" text="Contraseña:" textAlignment="CENTER" wrapText="true" />
+      <Label layoutX="386.0" layoutY="142.0" prefHeight="19.0" prefWidth="122.0" text="Nombre de usuario:" textAlignment="CENTER" wrapText="true" />
+      <TextField fx:id="usernameTextField" layoutX="384.0" layoutY="170.0" prefHeight="25.0" prefWidth="193.0" />
+      <Label layoutX="396.0" layoutY="34.0" prefHeight="81.0" prefWidth="170.0" text="Bienvenido/a al Sistema para la Divulgación Científica sobre la Conservacion de Polinizadores." textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordField" layoutX="384.0" layoutY="234.0" prefHeight="25.0" prefWidth="193.0" />
+      <Button layoutX="438.0" layoutY="281.0" mnemonicParsing="false" onAction="#loginButtonClick" text="Iniciar sesión" />
+      <Button layoutX="411.0" layoutY="346.0" mnemonicParsing="false" onAction="#enterAsGuestButtonClick" text="Ingresar como invitado" />
    </children>
 </AnchorPane>
