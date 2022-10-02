@@ -33,7 +33,7 @@ public class FXMLPollinatorMainMenuController implements Initializable {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("FXMLPollinator.fxml"));
                 VBox pollinatorVBox = loader.load();
-                FXMLPollinatorController pollinatorController = loader.getController();
+                FXMLPollinatorTemplateController pollinatorController = loader.getController();
                 pollinatorController.setPollinatorData(pollinators);
                 if(column == 6) {
                     column = 0;

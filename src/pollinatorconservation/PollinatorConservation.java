@@ -11,10 +11,8 @@ public class PollinatorConservation extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("views/FXMLMainMenu.fxml"));
-        
+        Parent root = FXMLLoader.load(getClass().getResource("views/FXMLLogin.fxml"));    
         Scene scene = new Scene(root);
-        
         stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
         stage.setScene(scene);
         stage.show();

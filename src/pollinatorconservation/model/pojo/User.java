@@ -8,6 +8,7 @@ public class User {
     private String username;
     private String password;
     private Role role;
+    private int responseCode;
 
     public User() {
     }
@@ -60,4 +61,12 @@ public class User {
         this.role = role;
     }
 
+    public int getResponseCode() {
+        return responseCode;
+    }
+
+    public void setResponseCode(int responseCode) {
+        this.responseCode = responseCode;
+    }
+    
 }
