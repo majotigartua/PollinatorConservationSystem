@@ -1,62 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLLoginController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLLoginController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="335.0" layoutX="244.0" layoutY="201.0" opacity="0.24" stroke="#dddddd" strokeType="INSIDE" strokeWidth="2.0" width="707.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="82.0" layoutX="244.0" layoutY="122.0" stroke="#bfbfbf" strokeType="INSIDE" strokeWidth="0.0" width="707.0" />
-      <Label layoutX="394.0" layoutY="321.0" text="Usuario:" textFill="#6b6b6b">
-         <font>
-            <Font name="DengXian Light" size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="394.0" layoutY="375.0" text="Contraseña:" textFill="#6b6b6b">
-         <font>
-            <Font name="DengXian Light" size="19.0" />
-         </font>
-      </Label>
-      <TextField fx:id="textFieldUsername" layoutX="514.0" layoutY="314.0" prefHeight="31.0" prefWidth="290.0">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </TextField>
-      <Label layoutX="283.0" layoutY="151.0" text="Sistema para la Divulgación Científica sobre la Conservación de Polinizadores" textFill="GREY">
-         <font>
-            <Font name="DengXian Regular" size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="394.0" layoutY="269.0" prefHeight="23.0" prefWidth="401.0" text="¡Bienvenido! Por favor, ingresa tus datos." textFill="#808080">
-         <font>
-            <Font name="DengXian Regular" size="19.0" />
-         </font>
-      </Label>
-      <Button layoutX="394.0" layoutY="436.0" mnemonicParsing="false" onAction="#clickButtonLogin" prefHeight="31.0" prefWidth="184.0" text="Ingresar">
-         <font>
-            <Font name="DengXian Regular" size="17.0" />
-         </font>
-      </Button>
-      <Button layoutX="622.0" layoutY="436.0" mnemonicParsing="false" onAction="#clickButtonCancel" prefHeight="31.0" prefWidth="184.0" text="Cancelar">
-         <font>
-            <Font name="DengXian Regular" size="17.0" />
-         </font>
-      </Button>
-      <PasswordField fx:id="passwordFieldPassword" layoutX="514.0" layoutY="368.0" prefHeight="38.0" prefWidth="290.0">
-         <font>
-            <Font name="DengXian Regular" size="12.0" />
-         </font>
-      </PasswordField>
-      <Label fx:id="labelFailedLogin" layoutX="394.0" layoutY="232.0" prefHeight="23.0" prefWidth="401.0" text="Acceso inválido. Por favor, intentálo de nuevo." textFill="#b5b5b5" visible="false">
-         <font>
-            <Font name="DengXian Regular" size="19.0" />
-         </font>
-      </Label>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="usernameTextField" layoutX="250.0" layoutY="95.0" />
+            <PasswordField fx:id="passwordField" layoutX="176.0" layoutY="156.0" />
+            <Button layoutX="274.0" layoutY="227.0" mnemonicParsing="false" onAction="#loginButtonClick" text="Button" />
+         </children></Pane>
    </children>
 </AnchorPane>
