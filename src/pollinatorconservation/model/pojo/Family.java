@@ -41,5 +41,10 @@ public class Family {
     public void setClade(Clade clade) {
         this.clade = clade;
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
     
 }

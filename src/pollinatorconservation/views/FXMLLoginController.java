@@ -35,7 +35,7 @@ public class FXMLLoginController implements Initializable {
     private void loginButtonClick(ActionEvent event) {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
-        if (username.isEmpty() || password.isEmpty()) {
+        if (validateEmptyFields()) {
             Utilities.showAlert("No se puede dejar ningún campo vacío.\n\n"
                     + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
                     Alert.AlertType.WARNING);
@@ -43,7 +43,8 @@ public class FXMLLoginController implements Initializable {
             try {
                 login(username, password);
             } catch (SQLException exception) {
-                Utilities.showAlert("No hay conexión con la base de datos. \n\nPor favor, inténtelo nuevamente más tarde.\n",
+                Utilities.showAlert("No hay conexión con la base de datos.\n\n"
+                        + "Por favor, inténtelo nuevamente más tarde.\n",
                         Alert.AlertType.WARNING);
             } catch (NoSuchAlgorithmException exception) {
                 System.err.println("Error encrypting the password with SHA-256...");;
@@ -55,37 +56,50 @@ public class FXMLLoginController implements Initializable {
         User user = UserDAO.login(username, password);
         switch (user.getResponseCode()) {
             case Constants.CORRECT_OPERATION_CODE:
-                Utilities.showAlert("El nombre de usuario y contraseña son correctos. \n\nBienvenido/a al sistema, "
+                Utilities.showAlert("El nombre de usuario y contraseña son correctos.\n\n"
+                        + "Bienvenido/a al sistema, "
                         + user.getName() + " " + user.getPaternalSurname() + " " + user.getMaternalSurname() + ".\n",
                         Alert.AlertType.INFORMATION);
                 goToMainMenu(user);
                 break;
             case Constants.INVALID_ENTERED_DATA_CODE:
-                Utilities.showAlert("Los datos ingresados son inválidos. \n\nPor favor, compruebe la información ingresada e inténtelo nuevamente.\n",
+                Utilities.showAlert("Los datos ingresados son inválidos.\n\n"
+                        + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
                         Alert.AlertType.WARNING);
                 passwordField.setText("");
                 break;
             case Constants.NO_DATABASE_CONNECTION_CODE:
-                Utilities.showAlert("No hay conexión con la base de datos. \n\nPor favor, inténtelo más tarde.\n",
+                Utilities.showAlert("No hay conexión con la base de datos.\n\n"
+                        + "Por favor, inténtelo más tarde.\n",
                         Alert.AlertType.ERROR);
                 break;
         }
     }
 
+    @FXML
+    private void enterAsGuestButtonClick(ActionEvent event) {
+        goToMainMenu(null);
+    }
+
     public void goToMainMenu(User user) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMainMenu"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMainMenu.fxml"));
         try {
             Parent root = loader.load();
             FXMLMainMenuController mainMenuController = loader.getController();
             mainMenuController.configureView(user);
-            Stage mainStage = (Stage) usernameTextField.getScene().getWindow();
+            Stage stage = (Stage) usernameTextField.getScene().getWindow();
             Scene mainMenuView = new Scene(root);
-            mainStage.setScene(mainMenuView);
-            mainStage.setTitle("Menú principal");
-            mainStage.show();
+            stage.setScene(mainMenuView);
+            stage.setTitle("Menú principal");
+            stage.show();
         } catch (IOException exception) {
             System.err.println("Error loading the \"Main Menu\" window...");
         }
+    }
+
+    public boolean validateEmptyFields() {
+        return (usernameTextField.getText().isEmpty()
+                || passwordField.getText().isEmpty());
     }
 
 }
