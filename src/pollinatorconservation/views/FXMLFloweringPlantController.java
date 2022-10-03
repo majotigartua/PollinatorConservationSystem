@@ -144,7 +144,7 @@ public class FXMLFloweringPlantController implements Initializable {
         File file = new File("src/pollinatorconservation/images/floweringplants/"
                 + getFloweringPlantImageName(floweringPlant) + ".jpg");
         file.delete();
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageView.snapshot(null, null), null);
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(floweringPlantImage, null);
         ImageIO.write(bufferedImage, "jpg", file);
     }
 
