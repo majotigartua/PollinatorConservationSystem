@@ -48,13 +48,5 @@ public abstract class Species {
     public void setFamily(Family family) {
         this.family = family;
     }
-
-    public ScientificResearcher getScientificResearcher() {
-        return scientificResearcher;
-    }
-
-    public void setScientificResearcher(ScientificResearcher scientificResearcher) {
-        this.scientificResearcher = scientificResearcher;
-    }
     
 }
