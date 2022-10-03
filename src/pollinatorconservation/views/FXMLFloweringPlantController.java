@@ -82,7 +82,7 @@ public class FXMLFloweringPlantController implements Initializable {
     }
 
     @FXML
-    private void addReferenceImageClick(MouseEvent event) {
+    private void addFloweringPlantImageClick(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar imagen de referencia de la planta florífera.");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Formato de intercambio de archivos JPEG (*.jpg, *.jpeg)",
