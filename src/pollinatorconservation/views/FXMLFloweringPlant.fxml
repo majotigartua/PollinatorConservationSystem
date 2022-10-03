@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLFloweringPlantController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="143.0" fitWidth="180.0" layoutX="388.0" layoutY="53.0" onMouseClicked="#addReferenceImageClick" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageView" fitHeight="143.0" fitWidth="180.0" layoutX="388.0" layoutY="53.0" onMouseClicked="#addFloweringPlantImageClick" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="33.0" layoutY="16.0" prefHeight="15.0" prefWidth="450.0" text="Ingrese la información de la planta florífera y dé clic en el botón de &quot;Aceptar&quot;." />
       <Label layoutX="33.0" layoutY="57.0" prefHeight="15.0" prefWidth="150.0" text="Nombre científico:" />
       <TextField fx:id="scientificNameTextField" layoutX="146.0" layoutY="53.0" prefHeight="25.0" prefWidth="200.0" />

@@ -45,7 +45,7 @@ public class FXMLLoginController implements Initializable {
             } catch (SQLException exception) {
                 Utilities.showAlert("No hay conexión con la base de datos.\n\n"
                         + "Por favor, inténtelo nuevamente más tarde.\n",
-                        Alert.AlertType.WARNING);
+                        Alert.AlertType.ERROR);
             } catch (NoSuchAlgorithmException exception) {
                 System.err.println("Error encrypting the password with SHA-256...");;
             }
