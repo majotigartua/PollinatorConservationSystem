@@ -5,4 +5,4 @@ build/
 dist/
 build.xml
 manifest.mf
-**/model/DatabaseConfiguration.txt
+**/DatabaseConfiguration.txt

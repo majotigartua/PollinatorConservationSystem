@@ -63,8 +63,7 @@ public class FXMLFloweringPlantController implements Initializable {
         try {
             loadClades();
         } catch (SQLException exception) {
-            Utilities.showAlert("No hay conexión con la base de datos.\n\n"
-                    + "Por favor, inténtelo más tarde.\n",
+            Utilities.showAlert("No hay conexión con la base de datos.\n\nPor favor, inténtelo más tarde.\n",
                     Alert.AlertType.ERROR);
         }
     }
