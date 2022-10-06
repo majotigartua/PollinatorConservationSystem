@@ -14,4 +14,7 @@ public class Constants {
     public static final int SPECIES_ALREADY_REGISTERED = 1003;
     public static final int CORRECT_OPERATION_CODE = 1004;
     
+    public static final int CONNECTION_ESTABLISHED = 9;
+    public static final int CONNECTION_LOST = 45;
+    
 }

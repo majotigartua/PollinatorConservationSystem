@@ -8,10 +8,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import pollinatorconservation.util.Constants;
 
 public class DatabaseConnection {
 
     private Connection databaseConnection;
+    private int connectionStatus = Constants.CONNECTION_LOST;
+
+    public int getConnectionStatus() {
+        return connectionStatus;
+    }
 
     public Connection open() throws SQLException {
         connectToDatabase();
@@ -29,6 +35,7 @@ public class DatabaseConnection {
             String username = attributes.getProperty("USERNAME");
             String password = attributes.getProperty("PASSWORD");
             databaseConnection = DriverManager.getConnection(url, username, password);
+            connectionStatus = Constants.CONNECTION_ESTABLISHED;
         } catch (FileNotFoundException exception) {
             System.err.println(exception.fillInStackTrace());
         } catch (IOException exception) {

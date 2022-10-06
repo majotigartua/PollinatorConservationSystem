@@ -1,22 +1,31 @@
 package pollinatorconservation.model.dao;
 
 import java.sql.SQLException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pollinatorconservation.model.pojo.Pollinator;
+import pollinatorconservation.model.dao.PollinatorDAO;
 
+/**
+ *
+ * @author sebtr
+ */
 public class PollinatorDAOTest {
     
+    /**
+     * Test of registerFloweringPlant method, of class FloweringPlantDAO.
+     */
     @Test
-    public void registerPollinatorSuccesfulTest() throws SQLException {
+    public void succeededTestRegisterFloweringPlant() throws SQLException {
         Pollinator pollinator = new Pollinator();
-        pollinator.setScientificName("");
-        pollinator.setGenericName("");
         pollinator.setDescription("");
+        pollinator.setGenericName("");
+        pollinator.setScientificName("");
+        pollinator.setImagePath("");
         pollinator.getFamily().setIdFamily(0);
         
-        int testResult = PollinatorDAO.registerPollinator(pollinator);
+        PollinatorDAO.registerPollinator(pollinator);
         
-        assertEquals(testResult, pollinatorconservation.util.Constants.CORRECT_OPERATION_CODE);
+        assertEquals(this, this); // The read method will help to complete the test.
     }
 }
