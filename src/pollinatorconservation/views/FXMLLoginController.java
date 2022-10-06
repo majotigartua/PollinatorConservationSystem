@@ -98,8 +98,7 @@ public class FXMLLoginController implements Initializable {
     }
 
     public boolean validateEmptyFields() {
-        return (usernameTextField.getText().isEmpty()
-                || passwordField.getText().isEmpty());
+        return (usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty());
     }
 
 }
