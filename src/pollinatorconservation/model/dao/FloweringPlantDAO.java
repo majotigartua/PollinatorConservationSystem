@@ -1,6 +1,6 @@
 package pollinatorconservation.model.dao;
 
-import educationaloffermanagement.model.DatabaseConnection;
+import pollinatorconservation.model.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
