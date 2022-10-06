@@ -26,7 +26,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
-import pollinatorconservation.model.dao.CladeDAO;
 import pollinatorconservation.model.dao.FamilyDAO;
 import pollinatorconservation.model.dao.OrderDAO;
 import pollinatorconservation.model.dao.PollinatorDAO;
