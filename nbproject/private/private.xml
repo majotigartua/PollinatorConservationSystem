@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/src/pollinatorconservation/views/FXMLFloweringPlantController.java</file>
+            <file>file:/C:/Users/sebtr/OneDrive/Escritorio/PollinatorConservation/src/pollinatorconservation/views/FXMLFloweringPlantController.java</file>
+            <file>file:/C:/Users/sebtr/OneDrive/Escritorio/PollinatorConservation/test/pollinatorconservation/model/dao/CladeDAOTests.java</file>
+            <file>file:/C:/Users/sebtr/OneDrive/Escritorio/PollinatorConservation/src/pollinatorconservation/views/FXMLPollinatorTemplateController.java</file>
+            <file>file:/C:/Users/sebtr/OneDrive/Escritorio/PollinatorConservation/src/pollinatorconservation/model/DatabaseConnection.java</file>
+            <file>file:/C:/Users/sebtr/OneDrive/Escritorio/PollinatorConservation/test/pollinatorconservation/model/dao/FamilyDAOTests.java</file>
         </group>
     </open-files>
 </project-private>

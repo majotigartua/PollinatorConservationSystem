@@ -1,4 +1,4 @@
-package educationaloffermanagement.model;
+package pollinatorconservation.model;
 
 import java.io.File;
 import java.io.FileInputStream;
