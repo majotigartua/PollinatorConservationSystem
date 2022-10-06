@@ -103,7 +103,7 @@ public class FXMLFloweringPlantController implements Initializable {
             if (typeOfViewToConfigure == Constants.REGISTRATION_WINDOW_CODE) {
                 registerFloweringPlant(floweringPlant);
             } else {
-                // PENDIENTE.
+                // PENDING.
             }
         } else {
             Utilities.showAlert("No se puede dejar ningún campo vacío.\n\n"

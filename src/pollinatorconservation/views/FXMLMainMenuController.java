@@ -28,11 +28,28 @@ public class FXMLMainMenuController implements Initializable {
 
     @FXML
     private void registerFloweringPlantButtonClick(ActionEvent event) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFloweringPlant.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFloweringPlant.fxml"));
         try {
             Parent root = loader.load();
             FXMLFloweringPlantController floweringPlantController = loader.getController();
             floweringPlantController.configureView(Constants.REGISTRATION_WINDOW_CODE, null);
+            Stage stage = new Stage();
+            Scene registerFloweringPlantView = new Scene(root);
+            stage.setScene(registerFloweringPlantView);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException exception) {
+            System.err.println("Error loading the \"Register flowering plant.\" window...");
+        }
+    }
+
+    @FXML
+    private void registerPollinatorButtonClick(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLPollinator.fxml"));
+        try {
+            Parent root = loader.load();
+            FXMLPollinatorController pollinatorController = loader.getController();
+            pollinatorController.configureView(Constants.REGISTRATION_WINDOW_CODE, null);
             Stage stage = new Stage();
             Scene registerFloweringPlantView = new Scene(root);
             stage.setScene(registerFloweringPlantView);
