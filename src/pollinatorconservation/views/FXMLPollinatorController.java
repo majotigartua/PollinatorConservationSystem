@@ -28,9 +28,10 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import pollinatorconservation.model.dao.CladeDAO;
 import pollinatorconservation.model.dao.FamilyDAO;
+import pollinatorconservation.model.dao.OrderDAO;
 import pollinatorconservation.model.dao.PollinatorDAO;
-import pollinatorconservation.model.pojo.Clade;
 import pollinatorconservation.model.pojo.Family;
+import pollinatorconservation.model.pojo.Order;
 import pollinatorconservation.model.pojo.Pollinator;
 import pollinatorconservation.util.Constants;
 import pollinatorconservation.util.Utilities;
@@ -38,26 +39,26 @@ import pollinatorconservation.util.Utilities;
 public class FXMLPollinatorController implements Initializable {
 
     @FXML
-    private TextArea descriptionTextArea;
-    @FXML
-    private ComboBox<Family> familyComboBox;
-    @FXML
-    private ComboBox<Clade> cladeComboBox;
+    private TextField scientificNameTextField;
     @FXML
     private TextField genericNameTextField;
     @FXML
-    private TextField scientificNameTextField;
+    private TextArea descriptionTextArea;
+    @FXML
+    private ComboBox<Order> orderComboBox;
+    @FXML
+    private ComboBox<Family> familyComboBox;
     @FXML
     private ImageView imageView;
 
     private int typeOfViewToConfigure;
 
-    private ObservableList<Clade> clades;
+    private ObservableList<Order> orders;
     private ObservableList<Family> families;
 
     private File pollinatortImageFile;
-    private Image floweringPlantImage;
-    
+    private Image pollinatorImage;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -66,30 +67,30 @@ public class FXMLPollinatorController implements Initializable {
             Utilities.showAlert("No hay conexión con la base de datos.\n\nPor favor, inténtelo más tarde.\n",
                     Alert.AlertType.ERROR);
         }
-    }    
+    }
 
     public void configureView(int typeOfViewToConfigure, Pollinator pollinator) {
         this.typeOfViewToConfigure = typeOfViewToConfigure;
         if (typeOfViewToConfigure == Constants.QUERY_WINDOW_CODE) {
-            pollinatortImageFile = new File("src/pollinatorconservation/images/" + getFloweringPlantImageName(pollinator) + ".jpg");
+            pollinatortImageFile = new File("src/pollinatorconservation/images/" + getPollinatorImageName(pollinator) + ".jpg");
             imageView.setOnMouseClicked(null);
         } else {
             pollinatortImageFile = new File("src/pollinatorconservation/images/default.png");
         }
-        floweringPlantImage = new Image(pollinatortImageFile.toURI().toString());
-        imageView.setImage(floweringPlantImage);
+        pollinatorImage = new Image(pollinatortImageFile.toURI().toString());
+        imageView.setImage(pollinatorImage);
     }
 
     @FXML
-    private void addFloweringPlantImageClick(MouseEvent event) {
+    private void addPollinatorImageClick(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar imagen de referencia de la planta florífera.");
+        fileChooser.setTitle("Seleccionar imagen de referencia de la especie polinizadora.");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Formato de intercambio de archivos JPEG (*.jpg, *.jpeg)",
                 "*.jpg", "*.jpeg");
         fileChooser.getExtensionFilters().add(extensionFilter);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         pollinatortImageFile = fileChooser.showOpenDialog(stage);
-        loadFloweringPlantImage();
+        loadPollinatorImage();
     }
 
     @FXML
@@ -141,18 +142,18 @@ public class FXMLPollinatorController implements Initializable {
 
     private void registerPollinatorImage(Pollinator pollinator) throws IOException {
         File file = new File("src/pollinatorconservation/images/pollinator/"
-                + getFloweringPlantImageName(pollinator) + ".jpg");
+                + getPollinatorImageName(pollinator) + ".jpg");
         file.delete();
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(floweringPlantImage, null);
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(pollinatorImage, null);
         ImageIO.write(bufferedImage, "jpg", file);
     }
 
-    private void loadFloweringPlantImage() {
+    private void loadPollinatorImage() {
         if (pollinatortImageFile != null) {
             try {
                 BufferedImage bufferedImage = ImageIO.read(pollinatortImageFile);
-                floweringPlantImage = SwingFXUtils.toFXImage(bufferedImage, null);
-                imageView.setImage(floweringPlantImage);
+                pollinatorImage = SwingFXUtils.toFXImage(bufferedImage, null);
+                imageView.setImage(pollinatorImage);
             } catch (IOException exception) {
                 System.err.println("Error loading flowering plant image...");
             }
@@ -160,16 +161,16 @@ public class FXMLPollinatorController implements Initializable {
     }
 
     private void loadClades() throws SQLException {
-        clades = FXCollections.observableArrayList();
-        ArrayList<Clade> query = CladeDAO.getClades();
-        clades.addAll(query);
-        cladeComboBox.setItems(clades);
-        cladeComboBox.valueProperty().addListener(new ChangeListener<Clade>() {
+        orders = FXCollections.observableArrayList();
+        ArrayList<Order> query = OrderDAO.getOrders();
+        orders.addAll(query);
+        orderComboBox.setItems(orders);
+        orderComboBox.valueProperty().addListener(new ChangeListener<Order>() {
             @Override
-            public void changed(ObservableValue<? extends Clade> observable, Clade oldValue, Clade newValue) {
+            public void changed(ObservableValue<? extends Order> observable, Order oldValue, Order newValue) {
                 if (newValue != null) {
                     try {
-                        loadFamiliesByClade(cladeComboBox.getValue());
+                        loadFamiliesByOrder(orderComboBox.getValue());
                     } catch (SQLException ex) {
                         Utilities.showAlert("No hay conexión con la base de datos.\n\n"
                                 + "Por favor, inténtelo más tarde.\n",
@@ -180,9 +181,9 @@ public class FXMLPollinatorController implements Initializable {
         });
     }
 
-    private void loadFamiliesByClade(Clade clade) throws SQLException {
+    private void loadFamiliesByOrder(Order order) throws SQLException {
         families = FXCollections.observableArrayList();
-        ArrayList<Family> query = FamilyDAO.getFamiliesByClade(clade);
+        ArrayList<Family> query = FamilyDAO.getFamiliesByOrder(order);
         families.addAll(query);
         familyComboBox.setItems(families);
     }
@@ -191,12 +192,12 @@ public class FXMLPollinatorController implements Initializable {
         return (scientificNameTextField.getText().isEmpty()
                 || genericNameTextField.getText().isEmpty()
                 || descriptionTextArea.getText().isEmpty()
-                || cladeComboBox.getSelectionModel().isEmpty()
+                || orderComboBox.getSelectionModel().isEmpty()
                 || familyComboBox.getSelectionModel().isEmpty())
                 || pollinatortImageFile.getName().equals("default.png");
     }
 
-    private String getFloweringPlantImageName(Pollinator pollinator) {
+    private String getPollinatorImageName(Pollinator pollinator) {
         return pollinator.getScientificName().toLowerCase().replaceAll("\\s", "");
     }
 
@@ -204,5 +205,5 @@ public class FXMLPollinatorController implements Initializable {
         Stage stage = (Stage) scientificNameTextField.getScene().getWindow();
         stage.close();
     }
-    
+
 }

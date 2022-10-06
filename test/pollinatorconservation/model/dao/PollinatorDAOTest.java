@@ -1,9 +1,3 @@
-/*
-
- * Author:
- * Date:
- * Description:
- */
 package pollinatorconservation.model.dao;
 
 import java.sql.SQLException;

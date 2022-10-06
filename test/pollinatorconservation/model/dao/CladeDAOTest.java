@@ -1,4 +1,6 @@
 package pollinatorconservation.model.dao;
 
-public class CladeDAOTests {
+
+
+public class CladeDAOTest {
 }

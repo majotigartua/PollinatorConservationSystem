@@ -1,12 +1,11 @@
 package pollinatorconservation.model.dao;
 
-import com.mysql.cj.Constants;
 import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import pollinatorconservation.model.pojo.FloweringPlant;
 
-public class FloweringPlantDAOTests {
+public class FloweringPlantDAOTest {
     
     @Test
     public void registerFloweringPlantSuccesfulTest() throws SQLException {
