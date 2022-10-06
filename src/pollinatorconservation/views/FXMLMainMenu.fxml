@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLMainMenuController">
    <children>
-      <Button layoutX="76.0" layoutY="76.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="219.0" text="Registrar especie polinizadora" />
+      <Button layoutX="76.0" layoutY="76.0" mnemonicParsing="false" onAction="#registerPollinatorButtonClick" prefHeight="111.0" prefWidth="219.0" text="Registrar especie polinizadora" />
       <Button layoutX="76.0" layoutY="214.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="219.0" text="Editar planta florífera" />
       <Button layoutX="318.0" layoutY="214.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="219.0" text="Editar planta florífera" />
       <Button layoutX="312.0" layoutY="76.0" mnemonicParsing="false" onAction="#registerFloweringPlantButtonClick" prefHeight="111.0" prefWidth="219.0" text="Registrar planta florífera" />

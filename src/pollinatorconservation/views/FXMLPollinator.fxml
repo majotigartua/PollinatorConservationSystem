@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLPollinatorController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="pollinatorconservation.views.FXMLPollinatorController">
+   <children>
+      <Button layoutX="488.0" layoutY="357.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="80.0" text="Cancelar" />
+      <Button layoutX="32.0" layoutY="357.0" mnemonicParsing="false" onAction="#acceptButtonClick" prefHeight="25.0" prefWidth="80.0" text="Aceptar" />
+      <TextArea fx:id="descriptionTextArea" layoutX="32.0" layoutY="227.0" prefHeight="112.0" prefWidth="536.0" wrapText="true" />
+      <Label layoutX="33.0" layoutY="202.0" prefHeight="15.0" prefWidth="150.0" text="Descripción:" />
+      <ComboBox fx:id="familyComboBox" layoutX="167.0" layoutY="166.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="33.0" layoutY="168.0" prefHeight="15.0" prefWidth="150.0" text="Tipo de familia:" />
+      <ComboBox fx:id="cladeComboBox" layoutX="167.0" layoutY="127.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="33.0" layoutY="129.0" prefHeight="15.0" prefWidth="150.0" text="Tipo de clado:" />
+      <TextField fx:id="genericNameTextField" layoutX="167.0" layoutY="87.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="33.0" layoutY="89.0" prefHeight="15.0" prefWidth="150.0" text="Nombre genérico:" />
+      <TextField fx:id="scientificNameTextField" layoutX="167.0" layoutY="51.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="33.0" layoutY="53.0" prefHeight="15.0" prefWidth="150.0" text="Nombre científico:" />
+      <Label layoutX="33.0" layoutY="12.0" prefHeight="21.0" prefWidth="555.0" text="Ingrese la información de la especie polinizadora y dé clic en el botón de &quot;Aceptar&quot;." />
+      <ImageView fx:id="imageView" fitHeight="143.0" fitWidth="180.0" layoutX="388.0" layoutY="49.0" onMouseClicked="#addFloweringPlantImageClick" pickOnBounds="true" preserveRatio="true" />
+   </children>
 </AnchorPane>
