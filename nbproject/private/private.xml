@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/views/FXMLPollinatorTemplateController.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/views/FXMLPollinatorController.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/model/PollinatorConservation.sql</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/model/pojo/Order.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/model/DatabaseConnection.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/model/pojo/Species.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/views/FXMLEditFloweringPlantController.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/views/FXMLSelectedFloweringPlantController.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/views/FXMLFloweringPlantController.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/images/floweringplants/amborellatrichopoda.jpg</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/model/pojo/FloweringPlant.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/model/pojo/Pollinator.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/views/FXMLLoginController.java</file>
+            <file>file:/C:/Users/oscar/OneDrive%20-%20Universidad%20Veracruzana/Escritorio/PollinatorConservation/src/pollinatorconservation/model/dao/FloweringPlantDAO.java</file>
+        </group>
     </open-files>
 </project-private>
