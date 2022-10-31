@@ -59,5 +59,21 @@ public class FXMLMainMenuController implements Initializable {
             System.err.println("Error loading the \"Register flowering plant.\" window...");
         }
     }
+
+    @FXML
+    private void editFloweringPlantButtonClick(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLSelectedFloweringPlant.fxml"));
+        try {
+            Parent root = loader.load();
+            FXMLSelectedFloweringPlantController selectedloweringPlantController = loader.getController();
+            Stage stage = new Stage();
+            Scene selectedFloweringPlantView = new Scene(root);
+            stage.setScene(selectedFloweringPlantView);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException exception) {
+            System.err.println("Error loading the \"Selected flowering plant.\" window...");
+        }
+    }
     
 }
