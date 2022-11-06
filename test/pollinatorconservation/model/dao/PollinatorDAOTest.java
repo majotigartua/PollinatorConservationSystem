@@ -1,6 +1,7 @@
 package pollinatorconservation.model.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import pollinatorconservation.model.pojo.Pollinator;
@@ -16,7 +17,7 @@ public class PollinatorDAOTest {
      * Test of registerFloweringPlant method, of class FloweringPlantDAO.
      */
     @Test
-    public void succeededTestRegisterFloweringPlant() throws SQLException {
+    public void succeededTestRegisterPollinatort() throws SQLException {
         Pollinator pollinator = new Pollinator();
         pollinator.setDescription("");
         pollinator.setGenericName("");
@@ -26,6 +27,24 @@ public class PollinatorDAOTest {
         
         PollinatorDAO.registerPollinator(pollinator);
         
-        assertEquals(this, this); // The read method will help to complete the test.
+        assertEquals(this, this); // To be determined.
+    }
+    
+    @Test
+    public void succeededTestCheckPollinator() throws SQLException {
+        ArrayList<Pollinator> pollinators = null;
+        
+        pollinators = PollinatorDAO.checkPollinators();
+        assertEquals(!pollinators.isEmpty(), true);
+    }
+    
+    @Test
+    public void failedTestCheckPollinator() throws SQLException {
+        ArrayList<Pollinator> pollinators = null;
+        
+        pollinators = PollinatorDAO.checkPollinators();
+        pollinators.clear();
+        
+        assertEquals(pollinators.isEmpty(), true);
     }
 }

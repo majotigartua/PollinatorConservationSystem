@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="editFloweringPlantPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLEditFloweringPlantController">
+   <children>
+      <Label layoutX="31.0" layoutY="14.0" text="Ingrese la información de la planta florífera y dé clic en el botón de &quot;Editar&quot;." />
+      <Label layoutX="33.0" layoutY="53.0" text="Nombre científico:" />
+      <Label layoutX="33.0" layoutY="89.0" text="Nombre genérico:" />
+      <Label layoutX="33.0" layoutY="129.0" text="Tipo de clado:" />
+      <Label layoutX="33.0" layoutY="168.0" text="Tipo de familia:" />
+      <Label layoutX="33.0" layoutY="200.0" text="Descripción:" />
+      <TextArea fx:id="descriptionTextArea" layoutX="31.0" layoutY="227.0" prefHeight="112.0" prefWidth="536.0" />
+      <TextField fx:id="scintificNameTextField" layoutX="172.0" layoutY="49.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="genericNameTextField" layoutX="172.0" layoutY="85.0" prefHeight="25.0" prefWidth="200.0" />
+      <ComboBox fx:id="cladeComboBox" layoutX="172.0" layoutY="125.0" prefHeight="25.0" prefWidth="200.0" />
+      <ComboBox fx:id="familyComboBox" layoutX="172.0" layoutY="164.0" prefHeight="25.0" prefWidth="200.0" />
+      <ImageView fx:id="imageView" fitHeight="143.0" fitWidth="180.0" layoutX="386.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="editButton" layoutX="31.0" layoutY="361.0" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="25.0" prefWidth="81.0" text="Editar" />
+      <Button fx:id="cancelButton" layoutX="465.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="81.0" text="Cancelar" />
+   </children>
+</AnchorPane>

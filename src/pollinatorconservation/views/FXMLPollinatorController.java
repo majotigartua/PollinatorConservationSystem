@@ -17,7 +17,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -49,6 +51,10 @@ public class FXMLPollinatorController implements Initializable {
     private ComboBox<Family> familyComboBox;
     @FXML
     private ImageView imageView;
+    @FXML
+    private Button acceptButton;
+    @FXML
+    private Label instructionLabel;
 
     private int typeOfViewToConfigure;
 
@@ -73,6 +79,18 @@ public class FXMLPollinatorController implements Initializable {
         if (typeOfViewToConfigure == Constants.QUERY_WINDOW_CODE) {
             pollinatortImageFile = new File("src/pollinatorconservation/images/" + getPollinatorImageName(pollinator) + ".jpg");
             imageView.setOnMouseClicked(null);
+            scientificNameTextField.setText(pollinator.getScientificName());
+            scientificNameTextField.setEditable(false);
+            genericNameTextField.setText(pollinator.getGenericName());
+            genericNameTextField.setEditable(false);
+            descriptionTextArea.setText(pollinator.getDescription());
+            descriptionTextArea.setEditable(false);
+            familyComboBox.setValue(pollinator.getFamily());
+            familyComboBox.setDisable(true);
+            orderComboBox.setValue(pollinator.getFamily().getOrder());
+            orderComboBox.setDisable(true);
+            acceptButton.setVisible(false);
+            instructionLabel.setVisible(false);
         } else {
             pollinatortImageFile = new File("src/pollinatorconservation/images/default.png");
         }
