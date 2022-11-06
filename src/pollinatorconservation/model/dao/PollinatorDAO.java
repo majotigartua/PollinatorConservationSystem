@@ -1,16 +1,3 @@
-/*
-
- * Author:
- * Date:
- * Description:
- */
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package pollinatorconservation.model.dao;
 
 import java.sql.Connection;
@@ -51,13 +38,13 @@ public class PollinatorDAO {
     public static ArrayList<Pollinator> checkPollinators() throws SQLException {
         ArrayList<Pollinator> pollinators = new ArrayList<>();
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        String query = "SELECT pollinator.*, family.name as family, family.idOrder, pollinatorconservation.order.name as 'order' FROM pollinator\n"
+        String query = "SELECT pollinator.*, family.name as family, family.idOrder, pollinatorConservation.order.name as 'order' FROM pollinator\n"
                 + "INNER JOIN family ON pollinator.idFamily = family.idFamily\n"
-                + "INNER JOIN pollinatorconservation.order ON family.idOrder = pollinatorconservation.order.idOrder";
+                + "INNER JOIN pollinatorconservation.order ON family.idOrder = pollinatorConservation.order.idOrder";
         try (Connection database = databaseConnection.open()){
             PreparedStatement configureQuery = database.prepareStatement(query);
             ResultSet result = configureQuery.executeQuery();
-            while(result.next()) {
+            while (result.next()) {
                 Pollinator pollinator = new Pollinator();
                 pollinator.setScientificName(result.getString("scientificName"));
                 pollinator.setGenericName(result.getString("genericName"));
@@ -73,10 +60,9 @@ public class PollinatorDAO {
                 
                 family.setOrder(order);
                 pollinator.setFamily(family);
-                
+             
                 pollinators.add(pollinator);
-            }
-            
+            }        
         } catch (SQLException exception) {
             System.err.println("No connection to the database. Please try again later.");
         } finally {

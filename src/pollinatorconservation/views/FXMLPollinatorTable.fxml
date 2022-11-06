@@ -12,7 +12,7 @@
       <Button layoutX="488.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="80.0" text="Cancelar" />
       <TableView fx:id="pollinatorTableView" layoutX="68.0" layoutY="84.0" prefHeight="232.0" prefWidth="464.0">
         <columns>
-          <TableColumn fx:id="genericNameTableColumn" prefWidth="147.0" text="Nombre genérico" />
+          <TableColumn fx:id="genericNameTableColumn" editable="false" prefWidth="147.0" text="Nombre genérico" />
           <TableColumn fx:id="scientificNameTableColumn" prefWidth="165.0" text="Nombre cienífico" />
             <TableColumn fx:id="orderTableColumn" prefWidth="151.0" text="Tipo de orden" />
         </columns>

@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -49,6 +50,8 @@ public class FXMLFloweringPlantController implements Initializable {
     private ComboBox<Clade> cladeComboBox;
     @FXML
     private ComboBox<Family> familyComboBox;
+    @FXML
+    private Button deleteFloweringPlantButton;
 
     private int typeOfViewToConfigure;
 
@@ -70,11 +73,26 @@ public class FXMLFloweringPlantController implements Initializable {
 
     public void configureView(int typeOfViewToConfigure, FloweringPlant floweringPlant) {
         this.typeOfViewToConfigure = typeOfViewToConfigure;
-        if (typeOfViewToConfigure == Constants.QUERY_WINDOW_CODE) {
-            floweringPlantImageFile = new File("src/pollinatorconservation/images/" + getFloweringPlantImageName(floweringPlant) + ".jpg");
-            imageView.setOnMouseClicked(null);
-        } else {
-            floweringPlantImageFile = new File("src/pollinatorconservation/images/default.png");
+        switch (typeOfViewToConfigure) {
+            case Constants.REGISTRATION_WINDOW_CODE:
+                floweringPlantImageFile = new File("src/pollinatorconservation/images/default.png");
+                deleteFloweringPlantButton.setDisable(true);
+                break;
+            case Constants.EDIT_WINDOW_CODE:
+                floweringPlantImageFile = new File("src/pollinatorconservation/images/" + getFloweringPlantImageName(floweringPlant) + ".jpg");
+                scientificNameTextField.setDisable(true);
+                imageView.setOnMouseClicked(null);
+                break;
+            case Constants.QUERY_WINDOW_CODE:
+                floweringPlantImageFile = new File("src/pollinatorconservation/images/" + getFloweringPlantImageName(floweringPlant) + ".jpg");
+                scientificNameTextField.setDisable(true);
+                genericNameTextField.setDisable(true);
+                cladeComboBox.setDisable(true);
+                familyComboBox.setDisable(true);
+                descriptionTextArea.setDisable(true);
+                imageView.setOnMouseClicked(null);
+                deleteFloweringPlantButton.setDisable(true);
+                break;
         }
         floweringPlantImage = new Image(floweringPlantImageFile.toURI().toString());
         imageView.setImage(floweringPlantImage);
@@ -84,8 +102,7 @@ public class FXMLFloweringPlantController implements Initializable {
     private void addFloweringPlantImageClick(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar imagen de referencia de la planta florífera.");
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Formato de intercambio de archivos JPEG (*.jpg, *.jpeg)",
-                "*.jpg", "*.jpeg");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Formato de intercambio de archivos JPEG (*.jpg, *.jpeg)", "*.jpg", "*.jpeg");
         fileChooser.getExtensionFilters().add(extensionFilter);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         floweringPlantImageFile = fileChooser.showOpenDialog(stage);
@@ -103,7 +120,7 @@ public class FXMLFloweringPlantController implements Initializable {
             if (typeOfViewToConfigure == Constants.REGISTRATION_WINDOW_CODE) {
                 registerFloweringPlant(floweringPlant);
             } else {
-                // PENDING.
+                editFloweringPlant(floweringPlant);
             }
         } else {
             Utilities.showAlert("No se puede dejar ningún campo vacío.\n\n"
@@ -119,6 +136,28 @@ public class FXMLFloweringPlantController implements Initializable {
 
     private void registerFloweringPlant(FloweringPlant floweringPlant) throws SQLException, IOException {
         int responseCode = FloweringPlantDAO.registerFloweringPlant(floweringPlant);
+        switch (responseCode) {
+            case Constants.CORRECT_OPERATION_CODE:
+                Utilities.showAlert("La información se registró correctamente en el sistema.\n",
+                        Alert.AlertType.INFORMATION);
+                registerFloweringPlantImage(floweringPlant);
+                closePopUpWindow();
+                break;
+            case Constants.SPECIES_ALREADY_REGISTERED:
+                Utilities.showAlert("La información ingresada corresponde a una planta florífera que ya se encuentra registrada en el sistema.\n\n"
+                        + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
+                        Alert.AlertType.WARNING);
+                break;
+            default:
+                Utilities.showAlert("No hay conexión con la base de datos.\n\n"
+                        + "Por favor, inténtelo más tarde.\n",
+                        Alert.AlertType.ERROR);
+                break;
+        }
+    }
+
+    private void editFloweringPlant(FloweringPlant floweringPlant) throws SQLException, IOException {
+        int responseCode = FloweringPlantDAO.editFloweringPlant(floweringPlant);
         switch (responseCode) {
             case Constants.CORRECT_OPERATION_CODE:
                 Utilities.showAlert("La información se registró correctamente en el sistema.\n",
@@ -204,5 +243,4 @@ public class FXMLFloweringPlantController implements Initializable {
         Stage stage = (Stage) scientificNameTextField.getScene().getWindow();
         stage.close();
     }
-
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pollinatorconservation.views;
 
 import java.io.IOException;
@@ -33,11 +28,6 @@ import pollinatorconservation.model.pojo.Pollinator;
 import pollinatorconservation.util.Constants;
 import pollinatorconservation.util.Utilities;
 
-/**
- * FXML Controller class
- *
- * @author sebtr
- */
 public class FXMLPollinatorTableController implements Initializable {
 
     @FXML
@@ -80,8 +70,7 @@ public class FXMLPollinatorTableController implements Initializable {
         scientificNameTableColumn.setCellValueFactory(new PropertyValueFactory("scientificName"));
         genericNameTableColumn.setCellValueFactory(new PropertyValueFactory("genericName"));
         orderTableColumn.setCellValueFactory(new PropertyValueFactory("family"));
-        pollinatorsList = FXCollections.observableArrayList();
-        
+        pollinatorsList = FXCollections.observableArrayList();   
     }
     
     private void setPollinatorTable() throws SQLException {
@@ -134,6 +123,5 @@ public class FXMLPollinatorTableController implements Initializable {
             pollinator = pollinatorsList.get(row);
         }
         return pollinator;
-    }
-    
+    }  
 }
