@@ -24,13 +24,14 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pollinatorconservation.PollinatorConservation;
+import pollinatorconservation.interfaces.IFloweringPlant;
 import pollinatorconservation.model.dao.FloweringPlantDAO;
 import pollinatorconservation.model.pojo.FloweringPlant;
 import pollinatorconservation.model.pojo.User;
 import pollinatorconservation.util.Constants;
 import pollinatorconservation.util.Utilities;
 
-public class FXMLFloweringPlantsController implements Initializable {
+public class FXMLFloweringPlantsController implements Initializable, IFloweringPlant {
 
     @FXML
     private Label instructionLabel;
@@ -120,7 +121,7 @@ public class FXMLFloweringPlantsController implements Initializable {
         try {
             Parent root = loader.load();
             FXMLFloweringPlantController floweringPlantController = loader.getController();
-            floweringPlantController.configureView(Constants.EDIT_WINDOW_CODE, scientificName);
+            floweringPlantController.configureView(Constants.EDIT_WINDOW_CODE, scientificName, this);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
             Scene registerFloweringPlantView = new Scene(root);
@@ -155,7 +156,7 @@ public class FXMLFloweringPlantsController implements Initializable {
         try {
             Parent root = loader.load();
             FXMLFloweringPlantController floweringPlantController = loader.getController();
-            floweringPlantController.configureView(Constants.QUERY_WINDOW_CODE, scientificName);
+            floweringPlantController.configureView(Constants.QUERY_WINDOW_CODE, scientificName, null);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
             Scene registerFloweringPlantView = new Scene(root);
@@ -165,6 +166,16 @@ public class FXMLFloweringPlantsController implements Initializable {
             stage.showAndWait();
         } catch (IOException exception) {
             System.err.println("Error loading the \"Consult flowering plant.\" window...");
+        }
+    }
+
+    @Override
+    public void updateFloweringPlants() {
+        try {
+            loadFloweringPlants();
+        } catch (SQLException ex) {
+            Utilities.showAlert("No hay conexión con la base de datos. Por favor inténtelo más tarde.",
+                    Alert.AlertType.ERROR);
         }
     }
 

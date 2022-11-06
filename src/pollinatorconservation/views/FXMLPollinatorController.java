@@ -29,6 +29,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import pollinatorconservation.interfaces.IPollinator;
 import pollinatorconservation.model.dao.FamilyDAO;
 import pollinatorconservation.model.dao.OrderDAO;
 import pollinatorconservation.model.dao.PollinatorDAO;
@@ -64,6 +65,8 @@ public class FXMLPollinatorController implements Initializable {
 
     private File pollinatorImageFile;
     private Image pollinatorImage;
+
+    private IPollinator pollinatorInterface;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -103,8 +106,9 @@ public class FXMLPollinatorController implements Initializable {
         familyComboBox.setItems(families);
     }
 
-    public void configureView(int typeOfViewToConfigure, String scientificName) throws SQLException {
+    public void configureView(int typeOfViewToConfigure, String scientificName, IPollinator pollinatorInterface) throws SQLException {
         this.typeOfViewToConfigure = typeOfViewToConfigure;
+        this.pollinatorInterface = pollinatorInterface;
         switch (typeOfViewToConfigure) {
             case Constants.REGISTRATION_WINDOW_CODE:
                 pollinatorImageFile = new File("src/pollinatorconservation/images/default.png");
@@ -119,9 +123,9 @@ public class FXMLPollinatorController implements Initializable {
                 instructionLabel.setVisible(false);
                 scientificNameTextField.setEditable(false);
                 genericNameTextField.setEditable(false);
-                familyComboBox.setEditable(false);
+                familyComboBox.setDisable(true);
                 orderComboBox.setDisable(true);
-                descriptionTextArea.setDisable(true);
+                descriptionTextArea.setEditable(false);
                 imageView.setOnMouseClicked(null);
                 acceptButton.setVisible(false);
                 loadPollinator(scientificName);
@@ -250,6 +254,7 @@ public class FXMLPollinatorController implements Initializable {
             Utilities.showAlert("La información se registró correctamente en el sistema.\n",
                     Alert.AlertType.INFORMATION);
             registerPollinatorImage(pollinator);
+            pollinatorInterface.updatePollinators();
             closePopUpWindow();
         } else {
             Utilities.showAlert("No hay conexión con la base de datos.\n\n"
@@ -260,8 +265,10 @@ public class FXMLPollinatorController implements Initializable {
 
     private void registerPollinatorImage(Pollinator pollinator) throws IOException {
         String scientificName = pollinator.getScientificName();
-        File file = new File("src/pollinatorconservation/images/pollinator/" + getPollinatorImageName(scientificName) + ".jpg");
-        file.delete();
+        File file = new File("src/pollinatorconservation/images/pollinators/" + getPollinatorImageName(scientificName) + ".jpg");
+        if (!file.exists()) {
+            file.getParentFile().mkdirs();
+        }
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(pollinatorImage, null);
         BufferedImage bufferedImageOnRGB = new BufferedImage(
                 bufferedImage.getWidth(),

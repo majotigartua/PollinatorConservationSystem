@@ -68,7 +68,7 @@ public class FXMLMainMenuController implements Initializable {
         try {
             Parent root = loader.load();
             FXMLPollinatorController pollinatorController = loader.getController();
-            pollinatorController.configureView(Constants.REGISTRATION_WINDOW_CODE, null);
+            pollinatorController.configureView(Constants.REGISTRATION_WINDOW_CODE, null, null);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
             Scene registerFloweringPlantView = new Scene(root);
@@ -121,7 +121,7 @@ public class FXMLMainMenuController implements Initializable {
         try {
             Parent root = loader.load();
             FXMLFloweringPlantController floweringPlantController = loader.getController();
-            floweringPlantController.configureView(Constants.REGISTRATION_WINDOW_CODE, null);
+            floweringPlantController.configureView(Constants.REGISTRATION_WINDOW_CODE, null, null);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
             Scene registerFloweringPlantView = new Scene(root);

@@ -24,13 +24,14 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pollinatorconservation.PollinatorConservation;
+import pollinatorconservation.interfaces.IPollinator;
 import pollinatorconservation.model.dao.PollinatorDAO;
 import pollinatorconservation.model.pojo.Pollinator;
 import pollinatorconservation.model.pojo.User;
 import pollinatorconservation.util.Constants;
 import pollinatorconservation.util.Utilities;
 
-public class FXMLPollinatorsController implements Initializable {
+public class FXMLPollinatorsController implements Initializable, IPollinator {
 
     @FXML
     private Label instructionLabel;
@@ -90,7 +91,7 @@ public class FXMLPollinatorsController implements Initializable {
     private void loadPollinators() throws SQLException {
         pollinatorTableView.getItems().clear();
         ArrayList<Pollinator> pollinatorsQuery = PollinatorDAO.getPollinators();
-        if (!pollinators.isEmpty()) {
+        if (!pollinatorsQuery.isEmpty()) {
             pollinators.clear();
             pollinators.addAll(pollinatorsQuery);
             pollinatorTableView.setItems(pollinators);
@@ -115,7 +116,7 @@ public class FXMLPollinatorsController implements Initializable {
         try {
             Parent root = loader.load();
             FXMLPollinatorController pollinatorController = loader.getController();
-            pollinatorController.configureView(Constants.EDIT_WINDOW_CODE, scientificName);
+            pollinatorController.configureView(Constants.EDIT_WINDOW_CODE, scientificName, this);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
             Scene registerFloweringPlantView = new Scene(root);
@@ -150,7 +151,7 @@ public class FXMLPollinatorsController implements Initializable {
         try {
             Parent root = loader.load();
             FXMLPollinatorController pollinatorController = loader.getController();
-            pollinatorController.configureView(Constants.QUERY_WINDOW_CODE, scientificName);
+            pollinatorController.configureView(Constants.QUERY_WINDOW_CODE, scientificName, null);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
             Scene registerFloweringPlantView = new Scene(root);
@@ -166,6 +167,16 @@ public class FXMLPollinatorsController implements Initializable {
     @FXML
     private void cancelButtonClick(ActionEvent event) {
         goToMainMenu();
+    }
+
+    @Override
+    public void updatePollinators() {
+        try {
+            loadPollinators();
+        } catch (SQLException ex) {
+            Utilities.showAlert("No hay conexión con la base de datos. Por favor inténtelo más tarde.",
+                    Alert.AlertType.ERROR);
+        }
     }
 
 }
