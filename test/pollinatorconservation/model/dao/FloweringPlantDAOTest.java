@@ -17,7 +17,6 @@ public class FloweringPlantDAOTest {
         floweringPlant.setDescription("");
         floweringPlant.setGenericName("");
         floweringPlant.setScientificName("");
-        floweringPlant.setImagePath("");
         floweringPlant.getFamily().setIdFamily(0);
         
         FloweringPlantDAO.registerFloweringPlant(floweringPlant);
@@ -32,13 +31,13 @@ public class FloweringPlantDAOTest {
         floweringPlant.setDescription("");
         floweringPlant.setGenericName("");
         floweringPlant.setScientificName("");
-        floweringPlant.setImagePath("");
         floweringPlant.getFamily().setIdFamily(0);
         FloweringPlantDAO floweringPlantDao = new FloweringPlantDAO();
-        floweringPlantDao.editFloweringPlant(floweringPlant, oldFloweringPlantName);
+        floweringPlantDao.editFloweringPlant(floweringPlant);
         
         assertEquals(this, this); // The read method will help to complete the test.
     }
+    
     public void succeededTestDeleteFloweringPlant() throws SQLException {
         FloweringPlant floweringPlant = new FloweringPlant();
         String oldFloweringPlantName = "Amborella trichopoda";
