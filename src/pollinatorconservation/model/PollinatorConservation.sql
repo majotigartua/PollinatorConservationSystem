@@ -26,7 +26,7 @@ CREATE TABLE `clade` (
   `idClade` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`idClade`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,7 +56,7 @@ CREATE TABLE `family` (
   KEY `FK_Family_Order_idx` (`idOrder`),
   CONSTRAINT `FK_Family_Clade` FOREIGN KEY (`idClade`) REFERENCES `clade` (`idClade`),
   CONSTRAINT `FK_Family_Order` FOREIGN KEY (`idOrder`) REFERENCES `order` (`idOrder`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +84,7 @@ CREATE TABLE `floweringplant` (
   PRIMARY KEY (`scientificName`),
   KEY `FK_FloweringPlant_Family_idx` (`idFamily`),
   CONSTRAINT `FK_FloweringPlant_Family` FOREIGN KEY (`idFamily`) REFERENCES `family` (`idFamily`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `floweringplant` (
 
 LOCK TABLES `floweringplant` WRITE;
 /*!40000 ALTER TABLE `floweringplant` DISABLE KEYS */;
-INSERT INTO `floweringplant` VALUES ('Amborella trichopoda','Amborella','Es un arbusto de gran porte o arbolito, algo trepador, siempreverde, de hasta 8 m. de altura, tomento de pelos uniseriados multicelulares (a veces unicelulares). Sus hojas son alternas, espiraladas a dísticas en la madurez, pecioladas, sin estípulas, de margen ondulado a dentado, a veces pinnatífidas, pinnatinervias, las venas conexas cerca del margen, estomas paracíticos a anomocíticos, sólo en la superficie abaxial.',39);
+INSERT INTO `floweringplant` VALUES ('Amborella trichopoda','Amborella','Es la más primitiva de las angiospermas. Consta de un único género Amborella, una única especie, Amborella trichopoda y conforma su propio orden Amborellales. Localmente abundante en el sotobosque de bosques húmedos sobre suelos esquistosos (200-1000 m). Acumuladora de aluminio. Amenazada de extinción por sobreexplotación del medio en que vive.',39);
 /*!40000 ALTER TABLE `floweringplant` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,7 +108,7 @@ CREATE TABLE `order` (
   `idOrder` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`idOrder`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +136,7 @@ CREATE TABLE `pollinator` (
   PRIMARY KEY (`scientificName`),
   KEY `FK_Pollinator_Family_idx` (`idFamily`),
   CONSTRAINT `FK_Pollinator_Familiy` FOREIGN KEY (`idFamily`) REFERENCES `family` (`idFamily`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,6 +145,7 @@ CREATE TABLE `pollinator` (
 
 LOCK TABLES `pollinator` WRITE;
 /*!40000 ALTER TABLE `pollinator` DISABLE KEYS */;
+INSERT INTO `pollinator` VALUES ('Ptychoptera contaminata','Mosca fantasma de la grulla','Son una pequeña familia (tres géneros existentes) de dípteros nematoceros. Superficialmente similares en apariencia a otras familias de \"tipuloides\", carecen de los ocelos de los Trichoceridae , la vena radial de cinco ramificaciones de los Tanyderidae y las dos venas anales que alcanzan los márgenes alares de los Tipulidae . Suelen estar aliados con los Tanyderidae basándose en las similitudes de la sutura mesonotal, denominándose a este grupo Ptychopteromorpha.',12);
 /*!40000 ALTER TABLE `pollinator` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +160,7 @@ CREATE TABLE `role` (
   `idRole` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`idRole`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +191,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`username`),
   KEY `FK_User_Role_idx` (`idRole`),
   CONSTRAINT `FK_User_Role` FOREIGN KEY (`idRole`) REFERENCES `role` (`idRole`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,4 +213,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-03 12:03:07
+-- Dump completed on 2022-11-06 14:34:38

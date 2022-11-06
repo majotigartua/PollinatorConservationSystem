@@ -88,7 +88,6 @@ public class PollinatorDAO {
     public static ArrayList<Pollinator> getPollinators() throws SQLException {
         ArrayList<Pollinator> pollinators = new ArrayList<>();
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        databaseConnection.open();
         String query = "SELECT * FROM pollinator";
         try (Connection database = databaseConnection.open()) {
             PreparedStatement configureQuery = database.prepareStatement(query);
@@ -97,10 +96,10 @@ public class PollinatorDAO {
                 Pollinator pollinator = new Pollinator();
                 pollinator.setScientificName(result.getString("scientificName"));
                 pollinator.setGenericName(result.getString("genericName"));
-                pollinator.setDescription(result.getString("description"));
+                pollinators.add(pollinator);
             }
         } catch (SQLException exception) {
-            System.err.println("No hay conexion con la base de datos. Intentelo más tarde.");
+            pollinators = null;
         } finally {
             databaseConnection.close();
         }

@@ -29,6 +29,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import pollinatorconservation.interfaces.IFloweringPlant;
 import pollinatorconservation.model.dao.CladeDAO;
 import pollinatorconservation.model.dao.FamilyDAO;
 import pollinatorconservation.model.dao.FloweringPlantDAO;
@@ -64,6 +65,8 @@ public class FXMLFloweringPlantController implements Initializable {
 
     private File floweringPlantImageFile;
     private Image floweringPlantImage;
+    
+    private IFloweringPlant floweringPlantInterface;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -103,8 +106,9 @@ public class FXMLFloweringPlantController implements Initializable {
         familyComboBox.setItems(families);
     }
 
-    public void configureView(int typeOfViewToConfigure, String scientificName) throws SQLException {
+    public void configureView(int typeOfViewToConfigure, String scientificName, IFloweringPlant floweringPlantInterface) throws SQLException {
         this.typeOfViewToConfigure = typeOfViewToConfigure;
+        this.floweringPlantInterface = floweringPlantInterface;
         switch (typeOfViewToConfigure) {
             case Constants.REGISTRATION_WINDOW_CODE:
                 floweringPlantImageFile = new File("src/pollinatorconservation/images/default.png");
@@ -250,6 +254,7 @@ public class FXMLFloweringPlantController implements Initializable {
             Utilities.showAlert("La información se registró correctamente en el sistema.\n",
                     Alert.AlertType.INFORMATION);
             registerFloweringPlantImage(floweringPlant);
+            floweringPlantInterface.updateFloweringPlants();
             closePopUpWindow();
         } else {
             Utilities.showAlert("No hay conexión con la base de datos.\n\n"
@@ -261,7 +266,9 @@ public class FXMLFloweringPlantController implements Initializable {
     private void registerFloweringPlantImage(FloweringPlant floweringPlant) throws IOException {
         String scientificName = floweringPlant.getScientificName();
         File file = new File("src/pollinatorconservation/images/floweringplants/" + getFloweringPlantImageName(scientificName) + ".jpg");
-        file.delete();
+        if (!file.exists()) {
+            file.getParentFile().mkdirs();
+        }
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(floweringPlantImage, null);
         BufferedImage bufferedImageOnRGB = new BufferedImage(
                 bufferedImage.getWidth(),
