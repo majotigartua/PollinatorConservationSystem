@@ -8,11 +8,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLMainMenuController">
    <children>
-      <Button fx:id="registerPollinatorButton" layoutX="76.0" layoutY="76.0" mnemonicParsing="false" onAction="#registerPollinatorButtonClick" prefHeight="111.0" prefWidth="219.0" text="Registrar especie polinizadora" />
-      <Button fx:id="editPollinatorButton" layoutX="76.0" layoutY="214.0" mnemonicParsing="false" onAction="#editPollinatorButtonClick" prefHeight="111.0" prefWidth="219.0" text="Editar especie polinizadora" />
-      <Button fx:id="editFloweringPlantButton" layoutX="318.0" layoutY="214.0" mnemonicParsing="false" onAction="#editFloweringPlantButtonClick" prefHeight="111.0" prefWidth="219.0" text="Editar planta florífera" />
-      <Button fx:id="registerFloweringPlantButton" layoutX="312.0" layoutY="76.0" mnemonicParsing="false" onAction="#registerFloweringPlantButtonClick" prefHeight="111.0" prefWidth="219.0" text="Registrar planta florífera" />
-      <Button fx:id="checkPollinatorButton" layoutX="73.0" layoutY="76.0" mnemonicParsing="false" onAction="#checkPollinatorButtonClick" prefHeight="111.0" prefWidth="225.0" text="Consultar especie polinizadora" visible="false" />
-      <Button fx:id="checkFloweringPlantButton" layoutX="309.0" layoutY="76.0" mnemonicParsing="false" onAction="#checkFloweringPlantButtonClick" prefHeight="111.0" prefWidth="225.0" text="Consultar planta prolífera" visible="false" />
+      <Button fx:id="registerPollinatorButton" layoutX="76.0" layoutY="76.0" mnemonicParsing="false" onAction="#registerPollinatorButtonClick" prefHeight="110.0" prefWidth="220.0" text="Registrar especie polinizadora" visible="false" />
+      <Button fx:id="editPollinatorButton" layoutX="76.0" layoutY="214.0" mnemonicParsing="false" onAction="#editPollinatorButtonClick" prefHeight="110.0" prefWidth="220.0" text="Editar especie polinizadora" visible="false" />
+      <Button fx:id="consultPollinatorButton" layoutX="70.0" layoutY="76.0" mnemonicParsing="false" onAction="#consultPollinatorButtonClick" prefHeight="110.0" prefWidth="460.0" text="Consultar especie polinizadora" visible="false" />
+      <Button fx:id="registerFloweringPlantButton" layoutX="309.0" layoutY="76.0" mnemonicParsing="false" onAction="#registerFloweringPlantButtonClick" prefHeight="110.0" prefWidth="220.0" text="Registrar planta florífera" visible="false" />
+      <Button fx:id="editFloweringPlantButton" layoutX="309.0" layoutY="214.0" mnemonicParsing="false" onAction="#editFloweringPlantButtonClick" prefHeight="110.0" prefWidth="220.0" text="Editar planta florífera" visible="false" />
+      <Button fx:id="consultFloweringPlantButton" layoutX="70.0" layoutY="214.0" mnemonicParsing="false" onAction="#consultFloweringPlantButtonClick" prefHeight="110.0" prefWidth="460.0" text="Consultar planta florífera" visible="false" />
+      <Button fx:id="registerScientificResearcherButton" layoutX="79.0" layoutY="76.0" mnemonicParsing="false" onAction="#registerScientificResearcherButtonClick" prefHeight="110.0" prefWidth="460.0" text="Registrar investigador científico" visible="false" />
+      <Button fx:id="editScientificResearcherButton" layoutX="79.0" layoutY="214.0" mnemonicParsing="false" onAction="#editScientificResearcherButtonClick" prefHeight="110.0" prefWidth="460.0" text="Editar investigador científico" visible="false" />
+      <Button layoutX="245.0" layoutY="348.0" mnemonicParsing="false" onAction="#signOutButtonClick" prefHeight="25.0" prefWidth="110.0" text="Cerrar sesión" />
    </children>
 </AnchorPane>

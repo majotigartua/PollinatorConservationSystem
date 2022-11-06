@@ -1,5 +1,6 @@
 package pollinatorconservation.views;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -40,6 +41,8 @@ import pollinatorconservation.util.Utilities;
 public class FXMLPollinatorController implements Initializable {
 
     @FXML
+    private Label instructionLabel;
+    @FXML
     private TextField scientificNameTextField;
     @FXML
     private TextField genericNameTextField;
@@ -53,15 +56,13 @@ public class FXMLPollinatorController implements Initializable {
     private ImageView imageView;
     @FXML
     private Button acceptButton;
-    @FXML
-    private Label instructionLabel;
 
     private int typeOfViewToConfigure;
 
     private ObservableList<Order> orders;
     private ObservableList<Family> families;
 
-    private File pollinatortImageFile;
+    private File pollinatorImageFile;
     private Image pollinatorImage;
 
     @Override
@@ -71,109 +72,6 @@ public class FXMLPollinatorController implements Initializable {
         } catch (SQLException exception) {
             Utilities.showAlert("No hay conexión con la base de datos.\n\nPor favor, inténtelo más tarde.\n",
                     Alert.AlertType.ERROR);
-        }
-    }
-
-    public void configureView(int typeOfViewToConfigure, Pollinator pollinator) {
-        this.typeOfViewToConfigure = typeOfViewToConfigure;
-        if (typeOfViewToConfigure == Constants.QUERY_WINDOW_CODE) {
-            pollinatortImageFile = new File("src/pollinatorconservation/images/" + getPollinatorImageName(pollinator) + ".jpg");
-            imageView.setOnMouseClicked(null);
-            scientificNameTextField.setText(pollinator.getScientificName());
-            scientificNameTextField.setEditable(false);
-            genericNameTextField.setText(pollinator.getGenericName());
-            genericNameTextField.setEditable(false);
-            descriptionTextArea.setText(pollinator.getDescription());
-            descriptionTextArea.setEditable(false);
-            familyComboBox.setValue(pollinator.getFamily());
-            familyComboBox.setDisable(true);
-            orderComboBox.setValue(pollinator.getFamily().getOrder());
-            orderComboBox.setDisable(true);
-            acceptButton.setVisible(false);
-            instructionLabel.setVisible(false);
-        } else {
-            pollinatortImageFile = new File("src/pollinatorconservation/images/default.png");
-        }
-        pollinatorImage = new Image(pollinatortImageFile.toURI().toString());
-        imageView.setImage(pollinatorImage);
-    }
-
-    @FXML
-    private void addPollinatorImageClick(MouseEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar imagen de referencia de la especie polinizadora.");
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Formato de intercambio de archivos JPEG (*.jpg, *.jpeg)",
-                "*.jpg", "*.jpeg");
-        fileChooser.getExtensionFilters().add(extensionFilter);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        pollinatortImageFile = fileChooser.showOpenDialog(stage);
-        loadPollinatorImage();
-    }
-
-    @FXML
-    private void acceptButtonClick(ActionEvent event) throws IOException, SQLException {
-        if (!validateEmptyFields()) {
-            Pollinator pollinator = new Pollinator();
-            pollinator.setScientificName(scientificNameTextField.getText());
-            pollinator.setGenericName(genericNameTextField.getText());
-            pollinator.setDescription(descriptionTextArea.getText());
-            pollinator.setFamily(familyComboBox.getValue());
-            if (typeOfViewToConfigure == Constants.REGISTRATION_WINDOW_CODE) {
-                registerPollinator(pollinator);
-            } else {
-                // PENDING.
-            }
-        } else {
-            Utilities.showAlert("No se puede dejar ningún campo vacío.\n\n"
-                    + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
-                    Alert.AlertType.WARNING);
-        }
-    }
-
-    @FXML
-    private void cancelButtonClick(ActionEvent event) {
-        closePopUpWindow();
-    }
-
-    private void registerPollinator(Pollinator pollinator) throws SQLException, IOException {
-        int responseCode = PollinatorDAO.registerPollinator(pollinator);
-        switch (responseCode) {
-            case Constants.CORRECT_OPERATION_CODE:
-                Utilities.showAlert("La información se registró correctamente en el sistema.\n",
-                        Alert.AlertType.INFORMATION);
-                registerPollinatorImage(pollinator);
-                closePopUpWindow();
-                break;
-            case Constants.SPECIES_ALREADY_REGISTERED:
-                Utilities.showAlert("La información ingresada corresponde a una especie polinizadora que ya se encuentra registrada en el sistema.\n\n"
-                        + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
-                        Alert.AlertType.WARNING);
-                break;
-            default:
-                Utilities.showAlert("No hay conexión con la base de datos.\n\n"
-                        + "Por favor, inténtelo más tarde.\n",
-                        Alert.AlertType.ERROR);
-                break;
-        }
-    }
-
-    private void registerPollinatorImage(Pollinator pollinator) throws IOException {
-        File file = new File("src/pollinatorconservation/images/pollinator/"
-                + getPollinatorImageName(pollinator) + ".jpg");
-        file.delete();
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(pollinatorImage, null);
-        ImageIO.write(bufferedImage, "jpg", file);
-    }
-
-    private void loadPollinatorImage() {
-        if (pollinatortImageFile != null) {
-            try {
-                BufferedImage bufferedImage = ImageIO.read(pollinatortImageFile);
-                pollinatorImage = SwingFXUtils.toFXImage(bufferedImage, null);
-                imageView.setImage(pollinatorImage);
-            } catch (IOException exception) {
-                System.err.println("Error loading flowering plant image...");
-            }
         }
     }
 
@@ -205,22 +103,179 @@ public class FXMLPollinatorController implements Initializable {
         familyComboBox.setItems(families);
     }
 
+    public void configureView(int typeOfViewToConfigure, String scientificName) throws SQLException {
+        this.typeOfViewToConfigure = typeOfViewToConfigure;
+        switch (typeOfViewToConfigure) {
+            case Constants.REGISTRATION_WINDOW_CODE:
+                pollinatorImageFile = new File("src/pollinatorconservation/images/default.png");
+                break;
+            case Constants.EDIT_WINDOW_CODE:
+                pollinatorImageFile = new File("src/pollinatorconservation/images/pollinators/" + getPollinatorImageName(scientificName) + ".jpg");
+                scientificNameTextField.setEditable(false);
+                loadPollinator(scientificName);
+                break;
+            default:
+                pollinatorImageFile = new File("src/pollinatorconservation/images/pollinators/" + getPollinatorImageName(scientificName) + ".jpg");
+                instructionLabel.setVisible(false);
+                scientificNameTextField.setEditable(false);
+                genericNameTextField.setEditable(false);
+                familyComboBox.setEditable(false);
+                orderComboBox.setDisable(true);
+                descriptionTextArea.setDisable(true);
+                imageView.setOnMouseClicked(null);
+                acceptButton.setVisible(false);
+                loadPollinator(scientificName);
+                break;
+        }
+        pollinatorImage = new Image(pollinatorImageFile.toURI().toString());
+        imageView.setImage(pollinatorImage);
+    }
+
+    private String getPollinatorImageName(String scientificName) {
+        return scientificName.toLowerCase().replaceAll("\\s", "");
+    }
+
+    private void loadPollinator(String scientificName) throws SQLException {
+        Pollinator pollinator = PollinatorDAO.getPollinator(scientificName);
+        scientificNameTextField.setText(scientificName);
+        genericNameTextField.setText(pollinator.getGenericName());
+        descriptionTextArea.setText(pollinator.getDescription());
+        int orderComboBoxIndex = getOrderComboBoxIndex(pollinator.getFamily().getOrder().getIdOrder());
+        orderComboBox.getSelectionModel().select(orderComboBoxIndex);
+        int familyComboBoxIndex = getFamilyComboBoxIndex(pollinator.getFamily().getIdFamily());
+        familyComboBox.getSelectionModel().select(familyComboBoxIndex);
+    }
+
+    private int getFamilyComboBoxIndex(int idFamily) {
+        int familyComboBoxIndex = 0;
+        for (int family = 0; family < families.size(); family++) {
+            if (families.get(family).getIdFamily() == idFamily) {
+                return familyComboBoxIndex = family;
+            }
+        }
+        return familyComboBoxIndex;
+    }
+
+    private int getOrderComboBoxIndex(int idOrder) {
+        int orderComboBoxIndex = 0;
+        for (int order = 0; order < orders.size(); order++) {
+            if (orders.get(order).getIdOrder() == idOrder) {
+                return orderComboBoxIndex = order;
+            }
+        }
+        return orderComboBoxIndex;
+    }
+
+    @FXML
+    private void addPollinatorImageClick(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar imagen de referencia de la especie polinizadora.");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Formato de intercambio de archivos JPEG (*.jpg, *.jpeg)", "*.jpg", "*.jpeg");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        pollinatorImageFile = fileChooser.showOpenDialog(stage);
+        loadPollinatorImage();
+    }
+
+    private void loadPollinatorImage() {
+        if (pollinatorImageFile != null) {
+            try {
+                BufferedImage bufferedImage = ImageIO.read(pollinatorImageFile);
+                pollinatorImage = SwingFXUtils.toFXImage(bufferedImage, null);
+                imageView.setImage(pollinatorImage);
+            } catch (IOException exception) {
+                System.err.println("Error loading flowering plant image...");
+            }
+        }
+    }
+
+    @FXML
+    private void acceptButtonClick(ActionEvent event) throws IOException, SQLException {
+        if (!validateEmptyFields()) {
+            Pollinator pollinator = new Pollinator();
+            pollinator.setScientificName(scientificNameTextField.getText());
+            pollinator.setGenericName(genericNameTextField.getText());
+            pollinator.setDescription(descriptionTextArea.getText());
+            pollinator.setFamily(familyComboBox.getValue());
+            if (typeOfViewToConfigure == Constants.REGISTRATION_WINDOW_CODE) {
+                registerPollinator(pollinator);
+            } else {
+                editPollinator(pollinator);
+            }
+        } else {
+            Utilities.showAlert("No se puede dejar ningún campo vacío.\n\n"
+                    + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
+                    Alert.AlertType.WARNING);
+        }
+    }
+
     private boolean validateEmptyFields() {
         return (scientificNameTextField.getText().isEmpty()
                 || genericNameTextField.getText().isEmpty()
                 || descriptionTextArea.getText().isEmpty()
                 || orderComboBox.getSelectionModel().isEmpty()
-                || familyComboBox.getSelectionModel().isEmpty())
-                || pollinatortImageFile.getName().equals("default.png");
+                || familyComboBox.getSelectionModel().isEmpty());
     }
 
-    private String getPollinatorImageName(Pollinator pollinator) {
-        return pollinator.getScientificName().toLowerCase().replaceAll("\\s", "");
+    private void registerPollinator(Pollinator pollinator) throws SQLException, IOException {
+        int responseCode = PollinatorDAO.registerPollinator(pollinator);
+        switch (responseCode) {
+            case Constants.CORRECT_OPERATION_CODE:
+                Utilities.showAlert("La información se registró correctamente en el sistema.\n",
+                        Alert.AlertType.INFORMATION);
+                registerPollinatorImage(pollinator);
+                closePopUpWindow();
+                break;
+            case Constants.SPECIES_ALREADY_REGISTERED:
+                Utilities.showAlert("La información ingresada corresponde a una especie polinizadora que ya se encuentra registrada en el sistema.\n\n"
+                        + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
+                        Alert.AlertType.WARNING);
+                break;
+            default:
+                Utilities.showAlert("No hay conexión con la base de datos.\n\n"
+                        + "Por favor, inténtelo más tarde.\n",
+                        Alert.AlertType.ERROR);
+                break;
+        }
     }
 
     private void closePopUpWindow() {
         Stage stage = (Stage) scientificNameTextField.getScene().getWindow();
         stage.close();
+    }
+
+    private void editPollinator(Pollinator pollinator) throws SQLException, IOException {
+        int responseCode = PollinatorDAO.editPollinator(pollinator);
+        if (responseCode == Constants.CORRECT_OPERATION_CODE) {
+            Utilities.showAlert("La información se registró correctamente en el sistema.\n",
+                    Alert.AlertType.INFORMATION);
+            registerPollinatorImage(pollinator);
+            closePopUpWindow();
+        } else {
+            Utilities.showAlert("No hay conexión con la base de datos.\n\n"
+                    + "Por favor, inténtelo más tarde.\n",
+                    Alert.AlertType.ERROR);
+        }
+    }
+
+    private void registerPollinatorImage(Pollinator pollinator) throws IOException {
+        String scientificName = pollinator.getScientificName();
+        File file = new File("src/pollinatorconservation/images/pollinator/" + getPollinatorImageName(scientificName) + ".jpg");
+        file.delete();
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(pollinatorImage, null);
+        BufferedImage bufferedImageOnRGB = new BufferedImage(
+                bufferedImage.getWidth(),
+                bufferedImage.getHeight(),
+                BufferedImage.OPAQUE);
+        Graphics2D graphicsOn2D = bufferedImageOnRGB.createGraphics();
+        graphicsOn2D.drawImage(bufferedImage, 0, 0, null);
+        ImageIO.write(bufferedImageOnRGB, "jpg", file);
+        graphicsOn2D.dispose();
+    }
+
+    @FXML
+    private void cancelButtonClick(ActionEvent event) {
+        closePopUpWindow();
     }
 
 }

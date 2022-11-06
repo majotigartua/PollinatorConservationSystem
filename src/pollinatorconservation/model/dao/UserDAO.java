@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import pollinatorconservation.model.pojo.Role;
 import pollinatorconservation.model.pojo.User;
 import pollinatorconservation.util.Constants;
 import pollinatorconservation.util.Utilities;
@@ -16,7 +17,9 @@ public class UserDAO {
         User user = new User();
         DatabaseConnection databaseConnection = new DatabaseConnection();
         databaseConnection.open();
-        String query = "SELECT user.* FROM user\n"
+        String query = "SELECT user.name, user.paternalSurname, user.maternalSurname, role.idRole, role.name as role FROM user\n"
+                + "INNER JOIN role\n"
+                + "ON user.IdRole = role.IdRole\n"
                 + "WHERE username = ? AND password = ?";
         try (Connection database = databaseConnection.open()) {
             PreparedStatement configureQuery = database.prepareStatement(query);
@@ -27,9 +30,10 @@ public class UserDAO {
                 user.setName(result.getString("name"));
                 user.setPaternalSurname(result.getString("paternalSurname"));
                 user.setMaternalSurname(result.getString("maternalSurname"));
-                user.setUsername(result.getString("username"));
-                user.setPassword(result.getString("password"));
-                user.setRole(RoleDAO.getRoleByUser(username));
+                Role role = new Role();
+                role.setIdRole(result.getInt("idRole"));
+                role.setName(result.getString("role"));
+                user.setRole(role);
                 user.setResponseCode(Constants.CORRECT_OPERATION_CODE);
             } else {
                 user.setResponseCode(Constants.INVALID_ENTERED_DATA_CODE);
@@ -41,5 +45,5 @@ public class UserDAO {
         }
         return user;
     }
-    
+
 }

@@ -5,9 +5,7 @@ public abstract class Species {
     private String scientificName;
     private String genericName;
     private String description;
-    private String imagePath;
     private Family family;
-    private ScientificResearcher scientificResearcher;
 
     public String getScientificName() {
         return scientificName;
@@ -31,14 +29,6 @@ public abstract class Species {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 
     public Family getFamily() {

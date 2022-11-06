@@ -1,5 +1,6 @@
 package pollinatorconservation.views;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +18,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -38,6 +41,8 @@ import pollinatorconservation.util.Utilities;
 public class FXMLFloweringPlantController implements Initializable {
 
     @FXML
+    private Label instructionLabel;
+    @FXML
     private TextField scientificNameTextField;
     @FXML
     private TextField genericNameTextField;
@@ -49,6 +54,8 @@ public class FXMLFloweringPlantController implements Initializable {
     private ComboBox<Clade> cladeComboBox;
     @FXML
     private ComboBox<Family> familyComboBox;
+    @FXML
+    private Button acceptButton;
 
     private int typeOfViewToConfigure;
 
@@ -65,97 +72,6 @@ public class FXMLFloweringPlantController implements Initializable {
         } catch (SQLException exception) {
             Utilities.showAlert("No hay conexión con la base de datos.\n\nPor favor, inténtelo más tarde.\n",
                     Alert.AlertType.ERROR);
-        }
-    }
-
-    public void configureView(int typeOfViewToConfigure, FloweringPlant floweringPlant) {
-        this.typeOfViewToConfigure = typeOfViewToConfigure;
-        if (typeOfViewToConfigure == Constants.QUERY_WINDOW_CODE) {
-            floweringPlantImageFile = new File("src/pollinatorconservation/images/" + getFloweringPlantImageName(floweringPlant) + ".jpg");
-            imageView.setOnMouseClicked(null);
-        } else {
-            floweringPlantImageFile = new File("src/pollinatorconservation/images/default.png");
-        }
-        floweringPlantImage = new Image(floweringPlantImageFile.toURI().toString());
-        imageView.setImage(floweringPlantImage);
-    }
-
-    @FXML
-    private void addFloweringPlantImageClick(MouseEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar imagen de referencia de la planta florífera.");
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Formato de intercambio de archivos JPEG (*.jpg, *.jpeg)",
-                "*.jpg", "*.jpeg");
-        fileChooser.getExtensionFilters().add(extensionFilter);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        floweringPlantImageFile = fileChooser.showOpenDialog(stage);
-        loadFloweringPlantImage();
-    }
-
-    @FXML
-    private void acceptButtonClick(ActionEvent event) throws IOException, SQLException {
-        if (!validateEmptyFields()) {
-            FloweringPlant floweringPlant = new FloweringPlant();
-            floweringPlant.setScientificName(scientificNameTextField.getText());
-            floweringPlant.setGenericName(genericNameTextField.getText());
-            floweringPlant.setDescription(descriptionTextArea.getText());
-            floweringPlant.setFamily(familyComboBox.getValue());
-            if (typeOfViewToConfigure == Constants.REGISTRATION_WINDOW_CODE) {
-                registerFloweringPlant(floweringPlant);
-            } else {
-                // PENDING.
-            }
-        } else {
-            Utilities.showAlert("No se puede dejar ningún campo vacío.\n\n"
-                    + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
-                    Alert.AlertType.WARNING);
-        }
-    }
-
-    @FXML
-    private void cancelButtonClick(ActionEvent event) {
-        closePopUpWindow();
-    }
-
-    private void registerFloweringPlant(FloweringPlant floweringPlant) throws SQLException, IOException {
-        int responseCode = FloweringPlantDAO.registerFloweringPlant(floweringPlant);
-        switch (responseCode) {
-            case Constants.CORRECT_OPERATION_CODE:
-                Utilities.showAlert("La información se registró correctamente en el sistema.\n",
-                        Alert.AlertType.INFORMATION);
-                registerFloweringPlantImage(floweringPlant);
-                closePopUpWindow();
-                break;
-            case Constants.SPECIES_ALREADY_REGISTERED:
-                Utilities.showAlert("La información ingresada corresponde a una planta florífera que ya se encuentra registrada en el sistema.\n\n"
-                        + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
-                        Alert.AlertType.WARNING);
-                break;
-            default:
-                Utilities.showAlert("No hay conexión con la base de datos.\n\n"
-                        + "Por favor, inténtelo más tarde.\n",
-                        Alert.AlertType.ERROR);
-                break;
-        }
-    }
-
-    private void registerFloweringPlantImage(FloweringPlant floweringPlant) throws IOException {
-        File file = new File("src/pollinatorconservation/images/floweringplants/"
-                + getFloweringPlantImageName(floweringPlant) + ".jpg");
-        file.delete();
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(floweringPlantImage, null);
-        ImageIO.write(bufferedImage, "jpg", file);
-    }
-
-    private void loadFloweringPlantImage() {
-        if (floweringPlantImageFile != null) {
-            try {
-                BufferedImage bufferedImage = ImageIO.read(floweringPlantImageFile);
-                floweringPlantImage = SwingFXUtils.toFXImage(bufferedImage, null);
-                imageView.setImage(floweringPlantImage);
-            } catch (IOException exception) {
-                System.err.println("Error loading flowering plant image...");
-            }
         }
     }
 
@@ -187,22 +103,179 @@ public class FXMLFloweringPlantController implements Initializable {
         familyComboBox.setItems(families);
     }
 
+    public void configureView(int typeOfViewToConfigure, String scientificName) throws SQLException {
+        this.typeOfViewToConfigure = typeOfViewToConfigure;
+        switch (typeOfViewToConfigure) {
+            case Constants.REGISTRATION_WINDOW_CODE:
+                floweringPlantImageFile = new File("src/pollinatorconservation/images/default.png");
+                break;
+            case Constants.EDIT_WINDOW_CODE:
+                floweringPlantImageFile = new File("src/pollinatorconservation/images/floweringplants/" + getFloweringPlantImageName(scientificName) + ".jpg");
+                scientificNameTextField.setEditable(false);
+                loadFloweringPlant(scientificName);
+                break;
+            case Constants.QUERY_WINDOW_CODE:
+                floweringPlantImageFile = new File("src/pollinatorconservation/images/floweringplants/" + getFloweringPlantImageName(scientificName) + ".jpg");
+                instructionLabel.setVisible(false);
+                scientificNameTextField.setEditable(false);
+                genericNameTextField.setEditable(false);
+                cladeComboBox.setDisable(true);
+                familyComboBox.setDisable(true);
+                descriptionTextArea.setEditable(false);
+                imageView.setOnMouseClicked(null);
+                acceptButton.setVisible(false);
+                loadFloweringPlant(scientificName);
+                break;
+        }
+        floweringPlantImage = new Image(floweringPlantImageFile.toURI().toString());
+        imageView.setImage(floweringPlantImage);
+    }
+
+    private String getFloweringPlantImageName(String scientificName) {
+        return scientificName.toLowerCase().replaceAll("\\s", "");
+    }
+
+    private void loadFloweringPlant(String scientificName) throws SQLException {
+        FloweringPlant floweringPlant = FloweringPlantDAO.getFloweringPlant(scientificName);
+        scientificNameTextField.setText(scientificName);
+        genericNameTextField.setText(floweringPlant.getGenericName());
+        descriptionTextArea.setText(floweringPlant.getDescription());
+        int cladeComboBoxIndex = getCladeComboBoxIndex(floweringPlant.getFamily().getClade().getIdClade());
+        cladeComboBox.getSelectionModel().select(cladeComboBoxIndex);
+        int familyComboBoxIndex = getFamilyComboBoxIndex(floweringPlant.getFamily().getIdFamily());
+        familyComboBox.getSelectionModel().select(familyComboBoxIndex);
+    }
+
+    private int getFamilyComboBoxIndex(int idFamily) {
+        int familyComboBoxIndex = 0;
+        for (int family = 0; family < families.size(); family++) {
+            if (families.get(family).getIdFamily() == idFamily) {
+                return familyComboBoxIndex = family;
+            }
+        }
+        return familyComboBoxIndex;
+    }
+
+    private int getCladeComboBoxIndex(int idClade) {
+        int cladeComboBoxIndex = 0;
+        for (int clade = 0; clade < clades.size(); clade++) {
+            if (clades.get(clade).getIdClade() == idClade) {
+                return cladeComboBoxIndex = clade;
+            }
+        }
+        return cladeComboBoxIndex;
+    }
+
+    @FXML
+    private void addFloweringPlantImageClick(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar imagen de referencia de la planta florífera.");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Formato de intercambio de archivos JPEG (*.jpg, *.jpeg)", "*.jpg", "*.jpeg");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        floweringPlantImageFile = fileChooser.showOpenDialog(stage);
+        loadFloweringPlantImage();
+    }
+
+    private void loadFloweringPlantImage() {
+        if (floweringPlantImageFile != null) {
+            try {
+                BufferedImage bufferedImage = ImageIO.read(floweringPlantImageFile);
+                floweringPlantImage = SwingFXUtils.toFXImage(bufferedImage, null);
+                imageView.setImage(floweringPlantImage);
+            } catch (IOException exception) {
+                System.err.println("Error loading flowering plant image...");
+            }
+        }
+    }
+
+    @FXML
+    private void acceptButtonClick(ActionEvent event) throws IOException, SQLException {
+        if (!validateEmptyFields()) {
+            FloweringPlant floweringPlant = new FloweringPlant();
+            floweringPlant.setScientificName(scientificNameTextField.getText());
+            floweringPlant.setGenericName(genericNameTextField.getText());
+            floweringPlant.setDescription(descriptionTextArea.getText());
+            floweringPlant.setFamily(familyComboBox.getValue());
+            if (typeOfViewToConfigure == Constants.REGISTRATION_WINDOW_CODE) {
+                registerFloweringPlant(floweringPlant);
+            } else {
+                editFloweringPlant(floweringPlant);
+            }
+        } else {
+            Utilities.showAlert("No se puede dejar ningún campo vacío.\n\n"
+                    + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
+                    Alert.AlertType.WARNING);
+        }
+    }
+
     private boolean validateEmptyFields() {
         return (scientificNameTextField.getText().isEmpty()
                 || genericNameTextField.getText().isEmpty()
                 || descriptionTextArea.getText().isEmpty()
                 || cladeComboBox.getSelectionModel().isEmpty()
-                || familyComboBox.getSelectionModel().isEmpty())
-                || floweringPlantImageFile.getName().equals("default.png");
+                || familyComboBox.getSelectionModel().isEmpty());
     }
 
-    private String getFloweringPlantImageName(FloweringPlant floweringPlant) {
-        return floweringPlant.getScientificName().toLowerCase().replaceAll("\\s", "");
+    private void registerFloweringPlant(FloweringPlant floweringPlant) throws SQLException, IOException {
+        int responseCode = FloweringPlantDAO.registerFloweringPlant(floweringPlant);
+        switch (responseCode) {
+            case Constants.CORRECT_OPERATION_CODE:
+                Utilities.showAlert("La información se registró correctamente en el sistema.\n",
+                        Alert.AlertType.INFORMATION);
+                registerFloweringPlantImage(floweringPlant);
+                closePopUpWindow();
+                break;
+            case Constants.SPECIES_ALREADY_REGISTERED:
+                Utilities.showAlert("La información ingresada corresponde a una planta florífera que ya se encuentra registrada en el sistema.\n\n"
+                        + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
+                        Alert.AlertType.WARNING);
+                break;
+            default:
+                Utilities.showAlert("No hay conexión con la base de datos.\n\n"
+                        + "Por favor, inténtelo más tarde.\n",
+                        Alert.AlertType.ERROR);
+                break;
+        }
     }
 
     private void closePopUpWindow() {
         Stage stage = (Stage) scientificNameTextField.getScene().getWindow();
         stage.close();
+    }
+
+    private void editFloweringPlant(FloweringPlant floweringPlant) throws SQLException, IOException {
+        int responseCode = FloweringPlantDAO.editFloweringPlant(floweringPlant);
+        if (responseCode == Constants.CORRECT_OPERATION_CODE) {
+            Utilities.showAlert("La información se registró correctamente en el sistema.\n",
+                    Alert.AlertType.INFORMATION);
+            registerFloweringPlantImage(floweringPlant);
+            closePopUpWindow();
+        } else {
+            Utilities.showAlert("No hay conexión con la base de datos.\n\n"
+                    + "Por favor, inténtelo más tarde.\n",
+                    Alert.AlertType.ERROR);
+        }
+    }
+
+    private void registerFloweringPlantImage(FloweringPlant floweringPlant) throws IOException {
+        String scientificName = floweringPlant.getScientificName();
+        File file = new File("src/pollinatorconservation/images/floweringplants/" + getFloweringPlantImageName(scientificName) + ".jpg");
+        file.delete();
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(floweringPlantImage, null);
+        BufferedImage bufferedImageOnRGB = new BufferedImage(
+                bufferedImage.getWidth(),
+                bufferedImage.getHeight(),
+                BufferedImage.OPAQUE);
+        Graphics2D graphicsOn2D = bufferedImageOnRGB.createGraphics();
+        graphicsOn2D.drawImage(bufferedImage, 0, 0, null);
+        ImageIO.write(bufferedImageOnRGB, "jpg", file);
+        graphicsOn2D.dispose();
+    }
+
+    @FXML
+    private void cancelButtonClick(ActionEvent event) {
+        closePopUpWindow();
     }
 
 }

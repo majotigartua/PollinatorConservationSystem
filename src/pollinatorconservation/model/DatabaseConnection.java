@@ -31,9 +31,9 @@ public class DatabaseConnection {
                     new File("src\\pollinatorconservation\\model\\DatabaseConfiguration.txt"))) {
                 attributes.load(databaseConfigurationFile);
             }
-            String url = attributes.getProperty("src\\pollinatorconservation\\model\\DatabaseConfiguration.txt");
-            String username = attributes.getProperty("root");
-            String password = attributes.getProperty("teamosam");
+            String url = attributes.getProperty("URL");
+            String username = attributes.getProperty("USERNAME");
+            String password = attributes.getProperty("PASSWORD");
             databaseConnection = DriverManager.getConnection(url, username, password);
             connectionStatus = Constants.CONNECTION_ESTABLISHED;
         } catch (FileNotFoundException exception) {
