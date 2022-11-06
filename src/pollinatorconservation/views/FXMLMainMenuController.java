@@ -117,12 +117,12 @@ public class FXMLMainMenuController implements Initializable {
             Parent root = loader.load();
             FXMLPollinatorTableController pollinatorTableController = loader.getController();
             Stage stage = (Stage) checkPollinatorButton.getScene().getWindow();
-            Scene registerFloweringPlantView = new Scene(root);
-            stage.setScene(registerFloweringPlantView);
+            Scene registerPollinatorView = new Scene(root);
+            stage.setScene(registerPollinatorView);
             stage.setTitle("Especies polinizadoras");
             stage.show();
         } catch (IOException exception) {
-            System.err.println("Error loading the \"Register flowering plant.\" window...");
+            System.err.println("Error loading the \"Check pollinator.\" window...");
         }
     }
 
@@ -130,6 +130,17 @@ public class FXMLMainMenuController implements Initializable {
     private void checkFloweringPlantButtonClick(ActionEvent event) {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFloweringTable.fxml"));
+        try {
+            Parent root = loader.load();
+            FXMLFloweringTableController floweringTableController = loader.getController();
+            Stage stage = (Stage) checkFloweringPlantButton.getScene().getWindow();
+            Scene registerFloweringPlantView = new Scene(root);
+            stage.setScene(registerFloweringPlantView);
+            stage.setTitle("Plantas floriferas");
+            stage.show();
+        } catch (IOException exception) {
+            System.err.println("Error loading the \"Check flowering plant.\" window...");
+        }
         
     }
     
