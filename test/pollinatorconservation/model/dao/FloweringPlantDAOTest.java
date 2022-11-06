@@ -8,9 +8,6 @@ import pollinatorconservation.model.pojo.FloweringPlant;
 
 public class FloweringPlantDAOTest {
 
-    /**
-     * Test of registerFloweringPlant method, of class FloweringPlantDAO.
-     */
     @Test
     public void succeededTestRegisterFloweringPlant() throws SQLException {
         FloweringPlant floweringPlant = new FloweringPlant();
@@ -22,7 +19,7 @@ public class FloweringPlantDAOTest {
         
         FloweringPlantDAO.registerFloweringPlant(floweringPlant);
         
-        assertEquals(this, this); // The read method will help to complete the test.
+        assertEquals(this, this);
     }
     
 }
