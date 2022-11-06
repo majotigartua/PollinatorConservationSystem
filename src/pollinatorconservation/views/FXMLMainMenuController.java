@@ -128,6 +128,9 @@ public class FXMLMainMenuController implements Initializable {
 
     @FXML
     private void checkFloweringPlantButtonClick(ActionEvent event) {
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFloweringTable.fxml"));
+        
     }
     
 }
