@@ -13,7 +13,7 @@ public class PollinatorConservation extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("views/FXMLLogin.fxml"));
         Scene scene = new Scene(root);
-        stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
+        stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")) {});
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
