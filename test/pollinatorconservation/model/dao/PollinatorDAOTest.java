@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import pollinatorconservation.model.pojo.Pollinator;
-import pollinatorconservation.model.dao.PollinatorDAO;
 
 /**
  *
