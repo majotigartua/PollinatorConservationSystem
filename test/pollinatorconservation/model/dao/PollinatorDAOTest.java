@@ -16,7 +16,7 @@ public class PollinatorDAOTest {
      * Test of registerFloweringPlant method, of class FloweringPlantDAO.
      */
     @Test
-    public void succeededTestRegisterPollinatort() throws SQLException {
+    public void succeededTestRegisterPollinator() throws SQLException {
         Pollinator pollinator = new Pollinator();
         pollinator.setDescription("");
         pollinator.setGenericName("");
@@ -29,7 +29,7 @@ public class PollinatorDAOTest {
     }
     
     @Test
-    public void succeededTestCheckPollinator() throws SQLException {
+    public void succeededTestGetPollinator() throws SQLException {
         ArrayList<Pollinator> pollinators = null;
         
         pollinators = PollinatorDAO.getPollinators();
@@ -37,7 +37,7 @@ public class PollinatorDAOTest {
     }
     
     @Test
-    public void failedTestCheckPollinator() throws SQLException {
+    public void failedTestGetPollinator() throws SQLException {
         ArrayList<Pollinator> pollinators = null;
         
         pollinators = PollinatorDAO.getPollinators();
