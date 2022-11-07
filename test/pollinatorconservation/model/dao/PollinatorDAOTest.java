@@ -22,7 +22,6 @@ public class PollinatorDAOTest {
         pollinator.setDescription("");
         pollinator.setGenericName("");
         pollinator.setScientificName("");
-        pollinator.setImagePath("");
         pollinator.getFamily().setIdFamily(0);
         
         PollinatorDAO.registerPollinator(pollinator);
@@ -34,7 +33,7 @@ public class PollinatorDAOTest {
     public void succeededTestCheckPollinator() throws SQLException {
         ArrayList<Pollinator> pollinators = null;
         
-        pollinators = PollinatorDAO.checkPollinators();
+        pollinators = PollinatorDAO.getPollinators();
         assertEquals(!pollinators.isEmpty(), true);
     }
     
@@ -42,7 +41,7 @@ public class PollinatorDAOTest {
     public void failedTestCheckPollinator() throws SQLException {
         ArrayList<Pollinator> pollinators = null;
         
-        pollinators = PollinatorDAO.checkPollinators();
+        pollinators = PollinatorDAO.getPollinators();
         pollinators.clear();
         
         assertEquals(pollinators.isEmpty(), true);
