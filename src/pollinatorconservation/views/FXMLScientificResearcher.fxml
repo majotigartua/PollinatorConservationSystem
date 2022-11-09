@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLScientificResearcherController">
+   <children>
+      <Label fx:id="instructionLabel" layoutX="27.0" layoutY="35.0" prefHeight="20.0" prefWidth="557.0" text="Ingrese la información del investigador científico y dé clic en el botón de &quot;Aceptar&quot;.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="89.0" prefHeight="15.0" prefWidth="150.0" text="Nombre:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameTextField" layoutX="177.0" layoutY="84.0" prefHeight="30.0" prefWidth="291.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="27.0" layoutY="146.0" prefHeight="15.0" prefWidth="150.0" text="Apellido paterno:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="paternalSurnameTextField" layoutX="177.0" layoutY="141.0" prefHeight="30.0" prefWidth="291.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="27.0" layoutY="204.0" prefHeight="15.0" prefWidth="150.0" text="Apellido materno:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="maternalSurnameTextField" layoutX="177.0" layoutY="199.0" prefHeight="30.0" prefWidth="291.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="27.0" layoutY="265.0" prefHeight="15.0" prefWidth="150.0" text="Nombre de usuario:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameTextField" layoutX="177.0" layoutY="260.0" prefHeight="30.0" prefWidth="291.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="27.0" layoutY="323.0" prefHeight="15.0" prefWidth="150.0" text="Contraseña:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordField" layoutX="177.0" layoutY="318.0" prefHeight="25.0" prefWidth="291.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </PasswordField>
+      <Label layoutX="27.0" layoutY="381.0" prefHeight="20.0" prefWidth="208.0" text="Número de cédula profesional:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="professionalLicenseNumberTextField" layoutX="245.0" layoutY="376.0" prefHeight="30.0" prefWidth="515.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="imageView" fitHeight="250.0" fitWidth="250.0" layoutX="510.0" layoutY="90.0" onMouseClicked="#addScientificResearcherImageClick" pickOnBounds="true" />
+      <Button layoutX="640.0" layoutY="436.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="120.0" text="Cancelar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="27.0" layoutY="436.0" mnemonicParsing="false" onAction="#acceptButtonClick" prefHeight="25.0" prefWidth="120.0" text="Aceptar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

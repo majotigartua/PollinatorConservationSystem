@@ -214,11 +214,11 @@ public class FXMLPollinatorController implements Initializable {
     }
 
     private boolean validateEmptyFields() {
-        return (scientificNameTextField.getText().isEmpty()
+        return scientificNameTextField.getText().isEmpty()
                 || genericNameTextField.getText().isEmpty()
                 || descriptionTextArea.getText().isEmpty()
                 || orderComboBox.getSelectionModel().isEmpty()
-                || familyComboBox.getSelectionModel().isEmpty());
+                || familyComboBox.getSelectionModel().isEmpty();
     }
 
     private void registerPollinator(Pollinator pollinator) throws SQLException, IOException {
