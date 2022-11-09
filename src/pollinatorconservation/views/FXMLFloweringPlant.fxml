@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,21 +8,54 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLFloweringPlantController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLFloweringPlantController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="143.0" fitWidth="180.0" layoutX="378.0" layoutY="59.0" onMouseClicked="#addFloweringPlantImageClick" pickOnBounds="true" />
-      <Label fx:id="instructionLabel" layoutX="23.0" layoutY="22.0" prefHeight="21.0" prefWidth="555.0" text="Ingrese la información de la planta florífera y dé clic en el botón de &quot;Aceptar&quot;." />
-      <Label layoutX="23.0" layoutY="63.0" prefHeight="15.0" prefWidth="150.0" text="Nombre científico:" />
-      <TextField fx:id="scientificNameTextField" layoutX="157.0" layoutY="61.0" prefHeight="25.0" prefWidth="200.0" />
-      <Label layoutX="23.0" layoutY="99.0" prefHeight="15.0" prefWidth="150.0" text="Nombre genérico:" />
-      <TextField fx:id="genericNameTextField" layoutX="157.0" layoutY="97.0" prefHeight="25.0" prefWidth="200.0" />
-      <Label layoutX="23.0" layoutY="139.0" prefHeight="15.0" prefWidth="150.0" text="Tipo de clado:" />
-      <ComboBox fx:id="cladeComboBox" layoutX="157.0" layoutY="137.0" prefHeight="25.0" prefWidth="200.0" />
-      <Label layoutX="23.0" layoutY="178.0" prefHeight="15.0" prefWidth="150.0" text="Tipo de familia:" />
-      <ComboBox fx:id="familyComboBox" layoutX="157.0" layoutY="176.0" prefHeight="25.0" prefWidth="200.0" />
-      <Label layoutX="23.0" layoutY="212.0" prefHeight="15.0" prefWidth="150.0" text="Descripción:" />
-      <TextArea fx:id="descriptionTextArea" layoutX="22.0" layoutY="237.0" prefHeight="112.0" prefWidth="536.0" wrapText="true" />
-      <Button fx:id="acceptButton" layoutX="22.0" layoutY="367.0" mnemonicParsing="false" onAction="#acceptButtonClick" prefHeight="25.0" prefWidth="80.0" text="Aceptar" />
-      <Button layoutX="478.0" layoutY="367.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="80.0" text="Cancelar" />
+      <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="300.0" layoutX="530.0" layoutY="70.0" onMouseClicked="#addFloweringPlantImageClick" pickOnBounds="true" />
+      <Label fx:id="instructionLabel" layoutX="50.0" layoutY="26.0" prefHeight="20.0" prefWidth="525.0" text="Ingrese la información de la planta florífera y dé clic en el botón de &quot;Aceptar&quot;.">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="50.0" layoutY="79.0" prefHeight="15.0" prefWidth="150.0" text="Nombre científico:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="scientificNameTextField" layoutX="200.0" layoutY="74.0" prefHeight="30.0" prefWidth="291.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="50.0" layoutY="136.0" prefHeight="15.0" prefWidth="150.0" text="Nombre genérico:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="genericNameTextField" layoutX="200.0" layoutY="131.0" prefHeight="30.0" prefWidth="291.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="50.0" layoutY="194.0" prefHeight="15.0" prefWidth="150.0" text="Tipo de clado:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <ComboBox fx:id="cladeComboBox" layoutX="200.0" layoutY="189.0" prefHeight="30.0" prefWidth="291.0" style="-fx-font-size: 14;" />
+      <Label layoutX="50.0" layoutY="245.0" prefHeight="15.0" prefWidth="150.0" text="Tipo de familia:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <ComboBox fx:id="familyComboBox" layoutX="199.0" layoutY="240.0" prefHeight="30.0" prefWidth="291.0" style="-fx-font-size: 14;" />
+      <Label layoutX="50.0" layoutY="290.0" prefHeight="15.0" prefWidth="150.0" text="Descripción:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextArea fx:id="descriptionTextArea" layoutX="50.0" layoutY="317.0" prefHeight="195.0" prefWidth="800.0" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
+      <Button fx:id="acceptButton" layoutX="48.0" layoutY="539.0" mnemonicParsing="false" onAction="#acceptButtonClick" prefHeight="25.0" prefWidth="120.0" text="Aceptar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="730.0" layoutY="539.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="120.0" text="Cancelar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>

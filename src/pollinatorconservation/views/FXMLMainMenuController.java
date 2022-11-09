@@ -71,13 +71,14 @@ public class FXMLMainMenuController implements Initializable {
             pollinatorController.configureView(Constants.REGISTRATION_WINDOW_CODE, null, null);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
+            stage.setResizable(false);
             Scene registerFloweringPlantView = new Scene(root);
             stage.setScene(registerFloweringPlantView);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registrar especie polinizadora.");
             stage.showAndWait();
         } catch (IOException exception) {
-            System.err.println("Error loading the \"Register flowering plant.\" window...");
+            System.err.println("Error loading the \"Register pollinator.\" window...");
         }
     }
 
@@ -124,6 +125,7 @@ public class FXMLMainMenuController implements Initializable {
             floweringPlantController.configureView(Constants.REGISTRATION_WINDOW_CODE, null, null);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
+            stage.setResizable(false);
             Scene registerFloweringPlantView = new Scene(root);
             stage.setScene(registerFloweringPlantView);
             stage.initModality(Modality.APPLICATION_MODAL);
