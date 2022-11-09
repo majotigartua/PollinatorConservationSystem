@@ -119,6 +119,7 @@ public class FXMLPollinatorsController implements Initializable, IPollinator {
             pollinatorController.configureView(Constants.EDIT_WINDOW_CODE, scientificName, this);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
+            stage.setResizable(false);
             Scene registerFloweringPlantView = new Scene(root);
             stage.setScene(registerFloweringPlantView);
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -154,6 +155,7 @@ public class FXMLPollinatorsController implements Initializable, IPollinator {
             pollinatorController.configureView(Constants.QUERY_WINDOW_CODE, scientificName, null);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
+            stage.setResizable(false);
             Scene registerFloweringPlantView = new Scene(root);
             stage.setScene(registerFloweringPlantView);
             stage.initModality(Modality.APPLICATION_MODAL);

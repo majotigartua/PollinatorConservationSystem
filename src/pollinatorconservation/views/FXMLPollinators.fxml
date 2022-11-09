@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLPollinatorsController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLPollinatorsController">
    <children>
-      <Button fx:id="consultButton" disable="true" layoutX="36.0" layoutY="356.0" mnemonicParsing="false" onAction="#consultButtonClick" prefHeight="21.0" prefWidth="107.0" text="Consultar" visible="false" />
-      <Button layoutX="459.0" layoutY="356.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="107.0" text="Cancelar" />
-      <TableView fx:id="pollinatorTableView" layoutX="36.0" layoutY="65.0" prefHeight="270.0" prefWidth="530.0">
-        <columns>
-          <TableColumn fx:id="scientificNameTableColumn" editable="false" prefWidth="261.0" text="Nombre científico" />
-          <TableColumn fx:id="genericNameTableColumn" prefWidth="266.0" text="Nombre genérico" />
-        </columns>
+      <Button fx:id="editButton" disable="true" layoutX="50.0" layoutY="528.0" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="30.0" prefWidth="120.0" text="Editar" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="consultButton" disable="true" layoutX="50.0" layoutY="528.0" mnemonicParsing="false" onAction="#consultButtonClick" prefHeight="20.0" prefWidth="120.0" text="Consultar" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="deletePollinatorButton" disable="true" layoutX="340.0" layoutY="528.0" mnemonicParsing="false" onAction="#deletePollinatorButtonClick" prefHeight="30.0" prefWidth="220.0" text="Eliminar especie polinizadora" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="730.0" layoutY="528.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="120.0" text="Cancelar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label fx:id="instructionLabel" layoutX="50.0" layoutY="46.0" prefHeight="20.0" prefWidth="530.0" text="Seleccione una especie polinizadora y dé clic en el botón de &quot;Editar&quot;.">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TableView fx:id="pollinatorTableView" layoutX="50.0" layoutY="90.0" prefHeight="400.0" prefWidth="800.0">
+         <columns>
+            <TableColumn fx:id="scientificNameTableColumn" editable="false" prefWidth="429.0" style="-fx-font-size: 14;" text="Nombre científico" />
+            <TableColumn fx:id="genericNameTableColumn" minWidth="0.0" prefWidth="366.0" style="-fx-font-size: 14;" text="Nombre genérico" />
+         </columns>
       </TableView>
-      <Label fx:id="instructionLabel" layoutX="36.0" layoutY="29.0" prefHeight="20.0" prefWidth="530.0" text="Seleccione una especie polinizadora y dé clic en el botón de &quot;Editar&quot;." />
-      <Button fx:id="deletePollinatorButton" disable="true" layoutX="213.0" layoutY="356.0" mnemonicParsing="false" onAction="#deletePollinatorButtonClick" prefHeight="25.0" prefWidth="176.0" text="Eliminar especie polinizadora" visible="false" />
-      <Button fx:id="editButton" disable="true" layoutX="36.0" layoutY="356.0" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="21.0" prefWidth="107.0" text="Editar" visible="false" />
    </children>
 </AnchorPane>

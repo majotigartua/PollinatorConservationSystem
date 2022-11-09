@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLFloweringPlantsController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLFloweringPlantsController">
    <children>
-      <Button fx:id="editButton" disable="true" layoutX="35.0" layoutY="351.0" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="21.0" prefWidth="107.0" text="Editar" visible="false" />
-      <Button fx:id="deleteFloweringPlantButton" disable="true" layoutX="212.0" layoutY="351.0" mnemonicParsing="false" onAction="#deleteFloweringPlantButtonClick" prefHeight="25.0" prefWidth="176.0" text="Eliminar planta florífera" visible="false" />
-      <Label fx:id="instructionLabel" layoutX="35.0" layoutY="24.0" prefHeight="20.0" prefWidth="530.0" text="Seleccione una planta florífera y dé clic en el botón de &quot;Editar&quot;." />
-      <TableView fx:id="floweringPlantsTableView" layoutX="35.0" layoutY="60.0" prefHeight="270.0" prefWidth="530.0">
+      <Button fx:id="editButton" disable="true" layoutX="50.0" layoutY="528.0" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="30.0" prefWidth="120.0" text="Editar" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="consultButton" disable="true" layoutX="50.0" layoutY="528.0" mnemonicParsing="false" onAction="#consultButtonClick" prefHeight="20.0" prefWidth="120.0" text="Consultar" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="deleteFloweringPlantButton" disable="true" layoutX="350.0" layoutY="528.0" mnemonicParsing="false" onAction="#deleteFloweringPlantButtonClick" prefHeight="25.0" prefWidth="200.0" text="Eliminar planta florífera" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="730.0" layoutY="528.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="120.0" text="Cancelar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label fx:id="instructionLabel" layoutX="50.0" layoutY="46.0" prefHeight="20.0" prefWidth="530.0" text="Seleccione una planta florífera y dé clic en el botón de &quot;Editar&quot;.">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TableView fx:id="floweringPlantsTableView" layoutX="50.0" layoutY="90.0" prefHeight="400.0" prefWidth="800.0">
          <columns>
-            <TableColumn fx:id="scientificNameTableColumn" editable="false" prefWidth="271.0" text="Nombre científico" />
-            <TableColumn fx:id="genericNameTableColumn" prefWidth="255.0" text="Nombre genérico" />
+            <TableColumn fx:id="scientificNameTableColumn" editable="false" prefWidth="406.0" style="-fx-font-size: 14;" text="Nombre científico" />
+            <TableColumn fx:id="genericNameTableColumn" minWidth="0.0" prefWidth="389.0" style="-fx-font-size: 14;" text="Nombre genérico" />
          </columns>
       </TableView>
-      <Button layoutX="458.0" layoutY="351.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="107.0" text="Cancelar" />
-      <Button fx:id="consultButton" disable="true" layoutX="35.0" layoutY="351.0" mnemonicParsing="false" onAction="#consultButtonClick" prefHeight="21.0" prefWidth="107.0" text="Consultar" visible="false" />
    </children>
 </AnchorPane>
