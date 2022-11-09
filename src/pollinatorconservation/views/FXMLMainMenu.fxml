@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -9,6 +10,16 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLMainMenuController">
    <children>
+      <Pane prefHeight="65.0" prefWidth="900.0" style="-fx-background-color: DFDFDF;">
+         <children>
+            <Label fx:id="messageLabel" layoutX="28.0" layoutY="23.0" prefHeight="20.0" prefWidth="741.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="50.0" layoutX="836.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
       <Button fx:id="registerPollinatorButton" layoutX="80.0" layoutY="117.0" mnemonicParsing="false" onAction="#registerPollinatorButtonClick" prefHeight="150.0" prefWidth="350.0" text="Registrar especie polinizadora" visible="false">
          <font>
             <Font size="14.0" />

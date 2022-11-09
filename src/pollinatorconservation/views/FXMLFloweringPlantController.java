@@ -214,11 +214,11 @@ public class FXMLFloweringPlantController implements Initializable {
     }
 
     private boolean validateEmptyFields() {
-        return (scientificNameTextField.getText().isEmpty()
+        return scientificNameTextField.getText().isEmpty()
                 || genericNameTextField.getText().isEmpty()
                 || descriptionTextArea.getText().isEmpty()
                 || cladeComboBox.getSelectionModel().isEmpty()
-                || familyComboBox.getSelectionModel().isEmpty());
+                || familyComboBox.getSelectionModel().isEmpty();
     }
 
     private void registerFloweringPlant(FloweringPlant floweringPlant) throws SQLException, IOException {

@@ -3,10 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/test/pollinatorconservation/model/dao/PollinatorDAOTest.java</file>
             <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/src/pollinatorconservation/views/FXMLMainMenuController.java</file>
-            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/src/pollinatorconservation/views/FXMLPollinatorController.java</file>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/test/pollinatorconservation/model/DatabaseConnectionTest.java</file>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/src/pollinatorconservation/views/FXMLLoginController.java</file>
             <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/src/pollinatorconservation/views/FXMLFloweringPlantsController.java</file>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/src/pollinatorconservation/views/FXMLScientificResearcherController.java</file>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/src/pollinatorconservation/views/FXMLFloweringPlantController.java</file>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/test/pollinatorconservation/model/dao/FamilyDAOTest.java</file>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/test/pollinatorconservation/model/dao/CladeDAOTest.java</file>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/src/pollinatorconservation/views/FXMLPollinatorController.java</file>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/src/pollinatorconservation/util/Constants.java</file>
             <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/src/pollinatorconservation/views/FXMLPollinatorsController.java</file>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/test/pollinatorconservation/model/dao/FloweringPlantDAOTest.java</file>
+            <file>file:/C:/Users/majot/Desktop/Sistema%20para%20la%20Divugación%20Científica%20sobre%20la%20Conservación%20de%20Polinizadores/test/pollinatorconservation/model/dao/UserDAOTest.java</file>
         </group>
     </open-files>
 </project-private>

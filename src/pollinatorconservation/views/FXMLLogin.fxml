@@ -27,7 +27,7 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <Label layoutX="590.0" layoutY="49.0" prefHeight="116.0" prefWidth="247.0" text="Bienvenido/a al Sistema para la Divulgación Científica sobre la Conservación de Polinizadores." textAlignment="CENTER" wrapText="true">
+      <Label layoutX="598.0" layoutY="49.0" prefHeight="116.0" prefWidth="247.0" text="Sistema para la Divulgación Científica sobre la Conservación de Polinizadores." textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>

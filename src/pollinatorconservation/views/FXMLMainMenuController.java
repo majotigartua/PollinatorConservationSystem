@@ -1,5 +1,6 @@
 package pollinatorconservation.views;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -11,7 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pollinatorconservation.PollinatorConservation;
@@ -20,6 +23,10 @@ import pollinatorconservation.util.Constants;
 
 public class FXMLMainMenuController implements Initializable {
 
+    @FXML
+    private Label messageLabel;
+    @FXML
+    private ImageView imageView;
     @FXML
     private Button registerPollinatorButton;
     @FXML
@@ -52,13 +59,26 @@ public class FXMLMainMenuController implements Initializable {
                 editPollinatorButton.setVisible(true);
                 registerFloweringPlantButton.setVisible(true);
                 editFloweringPlantButton.setVisible(true);
+                messageLabel.setText("¡Bienvenido/a al sistema, " + user.getName() + " " + user.getPaternalSurname() + " " + user.getMaternalSurname() + "!");
+                loadScientificResearcherImage();
             } else {
+                messageLabel.setText("¡Bienvenido/a al sistema!");
                 registerScientificResearcherButton.setVisible(true);
                 editScientificResearcherButton.setVisible(true);
             }
         } else {
+            messageLabel.setText("¡Bienvenido/a al sistema!");
             consultPollinatorButton.setVisible(true);
             consultFloweringPlantButton.setVisible(true);
+        }
+    }
+
+    private void loadScientificResearcherImage() {
+        String username = user.getUsername();
+        File scientificResearcherImageFile = new File("src/pollinatorconservation/images/scientificresearchers/" + username + ".jpg");
+        if (scientificResearcherImageFile.exists()) {
+            Image scientificResearcherImage = new Image(scientificResearcherImageFile.toURI().toString());
+            imageView.setImage(scientificResearcherImage);
         }
     }
 
@@ -172,6 +192,22 @@ public class FXMLMainMenuController implements Initializable {
 
     @FXML
     private void registerScientificResearcherButtonClick(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLScientificResearcher.fxml"));
+        try {
+            Parent root = loader.load();
+            FXMLScientificResearcherController scientificResearcherController = loader.getController();
+            scientificResearcherController.configureView(Constants.REGISTRATION_WINDOW_CODE, null, null);
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image(PollinatorConservation.class.getResourceAsStream("images/inecol.png")));
+            stage.setResizable(false);
+            Scene registerScientificResearcherView = new Scene(root);
+            stage.setScene(registerScientificResearcherView);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Registrar investigador científico.");
+            stage.showAndWait();
+        } catch (IOException exception) {
+            System.err.println("Error loading the \"Register scientific researcher.\" window...");
+        }
     }
 
     @FXML

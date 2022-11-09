@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import pollinatorconservation.model.pojo.Role;
 import pollinatorconservation.model.pojo.User;
 import pollinatorconservation.util.Constants;
-import pollinatorconservation.util.Utilities;
 
 public class UserDAO {
 
@@ -17,16 +16,17 @@ public class UserDAO {
         User user = new User();
         DatabaseConnection databaseConnection = new DatabaseConnection();
         databaseConnection.open();
-        String query = "SELECT user.name, user.paternalSurname, user.maternalSurname, role.idRole, role.name as role FROM user\n"
+        String query = "SELECT user.username, user.name, user.paternalSurname, user.maternalSurname, role.idRole, role.name as role FROM user\n"
                 + "INNER JOIN role\n"
                 + "ON user.IdRole = role.IdRole\n"
                 + "WHERE username = ? AND password = ?";
         try (Connection database = databaseConnection.open()) {
             PreparedStatement configureQuery = database.prepareStatement(query);
             configureQuery.setString(1, username);
-            configureQuery.setString(2, (Utilities.computeSHA256Hash(password)));
+            configureQuery.setString(2, password);
             ResultSet result = configureQuery.executeQuery();
             if (result.next()) {
+                user.setUsername(result.getString("username"));
                 user.setName(result.getString("name"));
                 user.setPaternalSurname(result.getString("paternalSurname"));
                 user.setMaternalSurname(result.getString("maternalSurname"));

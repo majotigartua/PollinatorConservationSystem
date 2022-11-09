@@ -128,7 +128,7 @@ public class FXMLFloweringPlantsController implements Initializable, IFloweringP
             Scene registerFloweringPlantView = new Scene(root);
             stage.setScene(registerFloweringPlantView);
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Editar planta florifera");
+            stage.setTitle("Editar planta florifera.");
             stage.showAndWait();
         } catch (IOException exception) {
             System.err.println("Error loading the \"Edit flowering plant.\" window...");
@@ -164,7 +164,7 @@ public class FXMLFloweringPlantsController implements Initializable, IFloweringP
             Scene registerFloweringPlantView = new Scene(root);
             stage.setScene(registerFloweringPlantView);
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Consultar planta florifera");
+            stage.setTitle("Consultar planta florifera.");
             stage.showAndWait();
         } catch (IOException exception) {
             System.err.println("Error loading the \"Consult flowering plant.\" window...");

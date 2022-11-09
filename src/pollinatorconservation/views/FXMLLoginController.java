@@ -35,12 +35,13 @@ public class FXMLLoginController implements Initializable {
     private void loginButtonClick(ActionEvent event) {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
-        if (validateEmptyFields()) {
+        if (username.isEmpty() || password.isEmpty()) {
             Utilities.showAlert("No se puede dejar ningún campo vacío.\n\n"
                     + "Por favor, compruebe la información ingresada e inténtelo nuevamente.\n",
                     Alert.AlertType.WARNING);
         } else {
             try {
+                password = Utilities.computeSHA256Hash(password);
                 login(username, password);
             } catch (SQLException exception) {
                 Utilities.showAlert("No hay conexión con la base de datos.\n\n"
@@ -56,10 +57,6 @@ public class FXMLLoginController implements Initializable {
         User user = UserDAO.login(username, password);
         switch (user.getResponseCode()) {
             case Constants.CORRECT_OPERATION_CODE:
-                Utilities.showAlert("El nombre de usuario y contraseña son correctos.\n\n"
-                        + "Bienvenido/a al sistema, "
-                        + user.getName() + " " + user.getPaternalSurname() + " " + user.getMaternalSurname() + ".\n",
-                        Alert.AlertType.INFORMATION);
                 goToMainMenu(user);
                 break;
             case Constants.INVALID_ENTERED_DATA_CODE:
@@ -90,15 +87,10 @@ public class FXMLLoginController implements Initializable {
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             Scene mainMenuView = new Scene(root);
             stage.setScene(mainMenuView);
-            stage.setTitle("Menú principal");
+            stage.setTitle("Menú principal.");
             stage.show();
         } catch (IOException exception) {
             System.err.println("Error loading the \"Main Menu\" window...");
         }
     }
-
-    public boolean validateEmptyFields() {
-        return (usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty());
-    }
-
 }
