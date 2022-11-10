@@ -1,12 +1,39 @@
 package pollinatorconservation.model.dao;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import static org.junit.Assert.assertEquals;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import pollinatorconservation.model.pojo.Role;
+import pollinatorconservation.model.pojo.ScientificResearcher;
+import pollinatorconservation.util.Constants;
+import pollinatorconservation.util.Utilities;
 
 public class ScientificResercherDAOTest {
 
-    public void registerScientificResearcherTest() throws SQLException {
-        assertEquals(this, this);
+    static ScientificResearcher scientificResearcher;
+
+    @BeforeClass
+    public static void setUp() throws NoSuchAlgorithmException {
+        scientificResearcher = new ScientificResearcher();
+        scientificResearcher.setName("Carlos Miguel");
+        scientificResearcher.setPaternalSurname("Pérez");
+        scientificResearcher.setMaternalSurname("Pérez");
+        scientificResearcher.setUsername("carlosmpp");
+        String password = Utilities.computeSHA256Hash("perezperez");
+        scientificResearcher.setPassword(password);
+        scientificResearcher.setProfessionalLicenseNumber(password);
+        scientificResearcher.setProfessionalLicenseNumber("PEPM01092801MVZRGSA3");
+        Role role = new Role();
+        role.setIdRole(Constants.ID_SCIENTIFIC_RESEARCHER_ROLE);
+        scientificResearcher.setRole(role);
     }
-    
+
+    @Test
+    public void registerScientificResearcherTest() throws SQLException {
+        int responseCode = ScientificResearcherDAO.registerScientificResearcher(scientificResearcher);
+        assertEquals(responseCode, Constants.CORRECT_OPERATION_CODE);
+    }
+
 }

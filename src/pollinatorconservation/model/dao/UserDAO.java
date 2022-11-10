@@ -1,7 +1,6 @@
 package pollinatorconservation.model.dao;
 
 import pollinatorconservation.model.DatabaseConnection;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +11,7 @@ import pollinatorconservation.util.Constants;
 
 public class UserDAO {
 
-    public static User login(String username, String password) throws SQLException, NoSuchAlgorithmException {
+    public static User login(String username, String password) throws SQLException {
         User user = new User();
         DatabaseConnection databaseConnection = new DatabaseConnection();
         databaseConnection.open();

@@ -1,7 +1,7 @@
 package pollinatorconservation.model.pojo;
 
 public class User {
-    
+
     private String name;
     private String paternalSurname;
     private String maternalSurname;
@@ -67,6 +67,23 @@ public class User {
 
     public void setResponseCode(int responseCode) {
         this.responseCode = responseCode;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        boolean isEquals = false;
+        if (object == this) {
+            isEquals = true;
+        } else {
+            if (object != null && object instanceof User) {
+                User user = (User) object;
+                isEquals = (this.getName().equals(user.getName())
+                        && this.getPaternalSurname().equals(user.getPaternalSurname())
+                        && this.getMaternalSurname().equals(user.getMaternalSurname())
+                        && this.getRole().getIdRole() == user.getRole().getIdRole());
+            }
+        }
+        return isEquals;
     }
     
 }

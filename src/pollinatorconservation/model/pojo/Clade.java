@@ -28,5 +28,20 @@ public class Clade {
     public String toString() {
         return getName();
     }
-    
+
+    @Override
+    public boolean equals(Object object) {
+        boolean isEquals = false;
+        if (object == this) {
+            isEquals = true;
+        } else {
+            if (object != null && object instanceof Clade) {
+                Clade clade = (Clade) object;
+                isEquals = (this.getIdClade() == clade.getIdClade()
+                        && this.getName().equals(clade.getName()));
+            }
+        }
+        return isEquals;
+    }
+
 }

@@ -1,61 +1,83 @@
 package pollinatorconservation.model.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
+import pollinatorconservation.model.pojo.Family;
 import pollinatorconservation.model.pojo.FloweringPlant;
 import pollinatorconservation.util.Constants;
 
 public class FloweringPlantDAOTest {
 
+    static FloweringPlant floweringPlant;
+    static ArrayList<FloweringPlant> floweringPlants;
+
+    @BeforeClass
+    public static void setUp() {
+        setUpFloweringPlant();
+        setUpFloweringPlants();
+    }
+
+    private static void setUpFloweringPlant() {
+        floweringPlant = new FloweringPlant();
+        floweringPlant.setScientificName("Magnolia grandiflora");
+        floweringPlant.setGenericName("Magnolia");
+        floweringPlant.setDescription("Es un árbol perennifolio que puede llegar a más de 30 m de altura. "
+                + "Forma una densa copa de ligeramente piramidal. Tronco gris o marrón claro con corteza lisa de joven tornándose estriada al envejecer. "
+                + "Las hojas alternas son simples, de elípticas a oblongo-ovadas o ampliamente ovadas y margen entero. "
+                + "Miden 10-20 cm de longitud por 7-10 cm de ancho, con los márgenes enteros, de color verde brillante oscuro y textura coriácea, con haz glabro y envés algo pubescente; "
+                + "pecíolo con una lanosidad corta, como aterciopelada rojiza o blanca, al igual que las yemas y las ramas jóvenes. "
+                + "Las fragantes flores son hermafroditas, solitarias, de 15 a 30 cm de diámetro con 3 sépalos petaloides y 6 pétalos —pueden ser hasta 12— ovalados, de textura cerúlea; "
+                + "con numerosos estambres. El fruto es un agregado de múltiples frutillos (folículos) con 1 o 2 semillas de envoltura rojiza (arilo) cada uno, en forma de piña alargada con textura leñosa.");
+        Family family = new Family();
+        family.setIdFamily(50);
+        floweringPlant.setFamily(family);
+    }
+
+    private static void setUpFloweringPlants() {
+        floweringPlants = new ArrayList<>();
+        FloweringPlant firstFloweringPlant = new FloweringPlant();
+        firstFloweringPlant.setScientificName("Amborella trichopoda");
+        firstFloweringPlant.setGenericName("Amborella");
+        floweringPlants.add(firstFloweringPlant);
+        FloweringPlant secondFloweringPlant = new FloweringPlant();
+        secondFloweringPlant.setScientificName("Magnolia grandiflora");
+        secondFloweringPlant.setGenericName("Magnolia");
+        floweringPlants.add(secondFloweringPlant);
+    }
+
     @Test
     public void editFloweringPlantTest() throws SQLException {
-        FloweringPlant floweringPlant = new FloweringPlant();
-        floweringPlant.setScientificName("Amborella trichopoda");
-        floweringPlant.setGenericName("Amborella");
-        floweringPlant.setDescription("Es un arbusto de gran porte o arbolito, algo trepador, siempreverde, de hasta"
-                + " 8 m. de altura, tomento de pelos uniseriados multicelulares (a veces unicelulares). Sus hojas son "
-                + "alternas, espiraladas a dísticas en la madurez, pecioladas, sin estípulas, de margen ondulado a dentado, "
-                + "a veces pinnatífidas, pinnatinervias, las venas conexas cerca del margen, estomas paracíticos a anomocíticos, "
-                + "sólo en la superficie abaxial.");
-        floweringPlant.getFamily().setIdFamily(39);
         int responseCode = FloweringPlantDAO.editFloweringPlant(floweringPlant);
         assertEquals(responseCode, Constants.CORRECT_OPERATION_CODE);
     }
 
+    @Test
     public void deleteFloweringPlantTest() throws SQLException {
-        String scientificName = "Amborella trichopoda";
+        String scientificName = floweringPlant.getScientificName();
         int responseCode = FloweringPlantDAO.deleteFloweringPlant(scientificName);
         assertEquals(responseCode, Constants.CORRECT_OPERATION_CODE);
     }
 
+    @Test
     public void getFloweringPlantTest() throws SQLException {
-        FloweringPlant floweringPlant = new FloweringPlant();
-        String scientificName = "Amborella trichopoda";
-        floweringPlant.setGenericName("Amborella");
-        floweringPlant.setScientificName("Amborella trichopoda");
-        floweringPlant.setDescription("Es un arbusto de gran porte o arbolito, algo trepador, siempreverde, de hasta"
-                + " 8 m. de altura, tomento de pelos uniseriados multicelulares (a veces unicelulares). Sus hojas son "
-                + "alternas, espiraladas a dísticas en la madurez, pecioladas, sin estípulas, de margen ondulado a dentado, "
-                + "a veces pinnatífidas, pinnatinervias, las venas conexas cerca del margen, estomas paracíticos a anomocíticos, "
-                + "sólo en la superficie abaxial.");
-        FloweringPlant floweringPlantDAO = FloweringPlantDAO.getFloweringPlant(scientificName);
-        assertEquals(floweringPlant, floweringPlantDAO);
+        String scientificName = floweringPlant.getScientificName();
+        FloweringPlant test = FloweringPlantDAO.getFloweringPlant(scientificName);
+        assertEquals(test, floweringPlant);
     }
 
+    @Test
     public void getFloweringPlantsTest() throws SQLException {
-        assertEquals(this, this);
+        ArrayList<FloweringPlant> test = FloweringPlantDAO.getFloweringPlants();
+        assertTrue(test.containsAll(floweringPlants));
     }
 
     @Test
     public void registerFloweringPlantTest() throws SQLException {
-        FloweringPlant floweringPlant = new FloweringPlant();
-        floweringPlant.setScientificName("");
-        floweringPlant.setGenericName("");
-        floweringPlant.setDescription("");
-        floweringPlant.getFamily().setIdFamily(0);
-        FloweringPlantDAO.registerFloweringPlant(floweringPlant);
-        assertEquals(this, this);
+        int responseCode = FloweringPlantDAO.registerFloweringPlant(floweringPlant);
+        assertEquals(responseCode, Constants.CORRECT_OPERATION_CODE);
     }
 
 }

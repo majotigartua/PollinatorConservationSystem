@@ -47,4 +47,19 @@ public class Family {
         return getName();
     }
     
+        @Override
+    public boolean equals(Object object) {
+        boolean isEquals = false;
+        if (object == this) {
+            isEquals = true;
+        } else {
+            if (object != null && object instanceof Family) {
+                Family family = (Family) object;
+                isEquals = (this.getIdFamily() == family.getIdFamily()
+                        && this.getName().equals(family.getName()));
+            }
+        }
+        return isEquals;
+    }
+    
 }

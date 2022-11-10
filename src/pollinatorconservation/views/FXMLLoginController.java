@@ -53,7 +53,7 @@ public class FXMLLoginController implements Initializable {
         }
     }
 
-    public void login(String username, String password) throws SQLException, NoSuchAlgorithmException {
+    public void login(String username, String password) throws SQLException {
         User user = UserDAO.login(username, password);
         switch (user.getResponseCode()) {
             case Constants.CORRECT_OPERATION_CODE:
