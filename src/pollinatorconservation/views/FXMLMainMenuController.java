@@ -191,7 +191,7 @@ public class FXMLMainMenuController implements Initializable {
     }
 
     @FXML
-    private void registerScientificResearcherButtonClick(ActionEvent event) {
+    private void registerScientificResearcherButtonClick(ActionEvent event) throws SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLScientificResearcher.fxml"));
         try {
             Parent root = loader.load();
@@ -212,18 +212,18 @@ public class FXMLMainMenuController implements Initializable {
 
     @FXML
     private void editScientificResearcherButtonClick(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLScientificsResearcher.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLScientificResearchers.fxml"));
         try {
             Parent root = loader.load();
-            FXMLScientificsResearcherController scientificsResearcherController = loader.getController();
-            scientificsResearcherController.configureView(user, Constants.EDIT_WINDOW_CODE);
+            FXMLScientificResearchersController scientificResearchersController = loader.getController();
+            scientificResearchersController.configureView(user, Constants.EDIT_WINDOW_CODE);
             Stage stage = (Stage) registerPollinatorButton.getScene().getWindow();
-            Scene registerScientificsResearcherView = new Scene(root);
-            stage.setScene(registerScientificsResearcherView);
+            Scene scientificResearchersView = new Scene(root);
+            stage.setScene(scientificResearchersView);
             stage.setTitle("Investigadores científicos.");
             stage.show();
         } catch (IOException exception) {
-            System.err.println("Error loading the \"Scientifics Researcher.\" window...");
+            System.err.println("Error loading the \"Scientific researchers.\" window...");
         }
     }
 

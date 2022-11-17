@@ -12,44 +12,36 @@ import pollinatorconservation.util.Constants;
 
 public class ScientificResearcherDAO {
 
-    public static int registerScientificResearcher(ScientificResearcher scientificResearcher) {
+    public static int deleteScientificResearcher(String username) throws SQLException {
         int responseCode;
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        String sentence = "INSERT INTO user (username, name, paternalSurname, maternalSurname, password, professionalLicenseNumber, idRole)\n"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sentence = "DELETE from user WHERE username = ?";
         try (Connection database = databaseConnection.open()) {
             PreparedStatement configureSentence = database.prepareStatement(sentence);
-            configureSentence.setString(1, scientificResearcher.getUsername());
-            configureSentence.setString(2, scientificResearcher.getName());
-            configureSentence.setString(3, scientificResearcher.getPaternalSurname());
-            configureSentence.setString(4, scientificResearcher.getMaternalSurname());
-            configureSentence.setString(5, scientificResearcher.getPassword());
-            configureSentence.setString(6, scientificResearcher.getProfessionalLicenseNumber());
-            configureSentence.setInt(7, scientificResearcher.getRole().getIdRole());
+            configureSentence.setString(1, username);
             int affectedRows = configureSentence.executeUpdate();
             responseCode = (affectedRows == 1) ? Constants.CORRECT_OPERATION_CODE : Constants.NO_DATABASE_CONNECTION_CODE;
         } catch (SQLException ex) {
-            responseCode = Constants.SCIENTIFIC_RESEARCHER_ALREADY_REGISTERED;
+            responseCode = Constants.CORRECT_OPERATION_CODE;
         } finally {
             databaseConnection.close();
         }
         return responseCode;
     }
+
     public static int editScientificResearcher(ScientificResearcher scientificResearcher) throws SQLException {
         int responseCode;
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        String sentence = "UPDATE user SET username = ?, name = ?, paternalSurname = ?, maternalSurname = ?, password = ?, professionalLicenseNumber = ?, idRole = ?\n"
+        String sentence = "UPDATE user SET name = ?, paternalSurname = ?, maternalSurname = ?, password = ?, professionalLicenseNumber = ?\n"
                 + "WHERE username = ?";
         try (Connection database = databaseConnection.open()) {
             PreparedStatement configureSentence = database.prepareStatement(sentence);
-            configureSentence.setString(1, scientificResearcher.getUsername());
-            configureSentence.setString(2, scientificResearcher.getName());
-            configureSentence.setString(3, scientificResearcher.getPaternalSurname());
-            configureSentence.setString(4, scientificResearcher.getMaternalSurname());
-            configureSentence.setString(5, scientificResearcher.getPassword());
-            configureSentence.setString(6, scientificResearcher.getProfessionalLicenseNumber());
-            configureSentence.setInt(7, scientificResearcher.getRole().getIdRole());
-            configureSentence.setString(8, scientificResearcher.getUsername());
+            configureSentence.setString(1, scientificResearcher.getName());
+            configureSentence.setString(2, scientificResearcher.getPaternalSurname());
+            configureSentence.setString(3, scientificResearcher.getMaternalSurname());
+            configureSentence.setString(4, scientificResearcher.getPassword());
+            configureSentence.setString(5, scientificResearcher.getProfessionalLicenseNumber());
+            configureSentence.setString(6, scientificResearcher.getUsername());
             int affectedRows = configureSentence.executeUpdate();
             responseCode = (affectedRows == 1) ? Constants.CORRECT_OPERATION_CODE : Constants.NO_DATABASE_CONNECTION_CODE;
         } catch (SQLException ex) {
@@ -59,7 +51,8 @@ public class ScientificResearcherDAO {
         }
         return responseCode;
     }
-     public static ScientificResearcher getScientificResearcher(String username) throws SQLException {
+
+    public static ScientificResearcher getScientificResearcher(String username) throws SQLException {
         ScientificResearcher scientificResearcher = new ScientificResearcher();
         DatabaseConnection databaseConnection = new DatabaseConnection();
         String query = "SELECT * from user WHERE username = ?";
@@ -84,12 +77,16 @@ public class ScientificResearcherDAO {
         }
         return scientificResearcher;
     }
-    public static ArrayList<ScientificResearcher> getSientificsResearcher() throws SQLException {
-        ArrayList<ScientificResearcher> scientificsResearcher = new ArrayList<>();
+
+    public static ArrayList<ScientificResearcher> getScientificResearchers() throws SQLException {
+        ArrayList<ScientificResearcher> scientificResearchers = new ArrayList<>();
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        String query = "SELECT user.name, user.paternalSurname, user.maternalSurname, user.username  FROM user";
+        String query = "SELECT name, paternalSurname, maternalSurname, username\n"
+                + "FROM user\n"
+                + "WHERE idRole = ?";
         try (Connection database = databaseConnection.open()) {
             PreparedStatement configureQuery = database.prepareStatement(query);
+            configureQuery.setInt(1, Constants.ID_SCIENTIFIC_RESEARCHER_ROLE);
             ResultSet result = configureQuery.executeQuery();
             while (result.next()) {
                 ScientificResearcher scientificResearcher = new ScientificResearcher();
@@ -97,29 +94,38 @@ public class ScientificResearcherDAO {
                 scientificResearcher.setName(result.getString("name"));
                 scientificResearcher.setPaternalSurname(result.getString("paternalSurname"));
                 scientificResearcher.setMaternalSurname(result.getString("maternalSurname"));
-                scientificsResearcher.add(scientificResearcher);
+                scientificResearchers.add(scientificResearcher);
             }
         } catch (SQLException exception) {
-            scientificsResearcher = null;
+            scientificResearchers = null;
         } finally {
             databaseConnection.close();
         }
-        return scientificsResearcher;
+        return scientificResearchers;
     }
-    public static int deleteScientificResearcher(String name) throws SQLException {
+
+    public static int registerScientificResearcher(ScientificResearcher scientificResearcher) {
         int responseCode;
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        String sentence = "DELETE from user WHERE name = ?";
+        String sentence = "INSERT INTO user (username, name, paternalSurname, maternalSurname, password, professionalLicenseNumber, idRole)\n"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection database = databaseConnection.open()) {
             PreparedStatement configureSentence = database.prepareStatement(sentence);
-            configureSentence.setString(1, name);
+            configureSentence.setString(1, scientificResearcher.getUsername());
+            configureSentence.setString(2, scientificResearcher.getName());
+            configureSentence.setString(3, scientificResearcher.getPaternalSurname());
+            configureSentence.setString(4, scientificResearcher.getMaternalSurname());
+            configureSentence.setString(5, scientificResearcher.getPassword());
+            configureSentence.setString(6, scientificResearcher.getProfessionalLicenseNumber());
+            configureSentence.setInt(7, scientificResearcher.getRole().getIdRole());
             int affectedRows = configureSentence.executeUpdate();
             responseCode = (affectedRows == 1) ? Constants.CORRECT_OPERATION_CODE : Constants.NO_DATABASE_CONNECTION_CODE;
         } catch (SQLException ex) {
-            responseCode = Constants.CORRECT_OPERATION_CODE;
+            responseCode = Constants.SCIENTIFIC_RESEARCHER_ALREADY_REGISTERED;
         } finally {
             databaseConnection.close();
         }
         return responseCode;
     }
+
 }

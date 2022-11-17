@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -32,8 +31,6 @@ import pollinatorconservation.util.Utilities;
 
 public class FXMLScientificResearcherController implements Initializable {
 
-    @FXML
-    private Label instructionLabel;
     @FXML
     private TextField nameTextField;
     @FXML
@@ -61,9 +58,11 @@ public class FXMLScientificResearcherController implements Initializable {
 
     public void configureView(int typeOfViewToConfigure, String username, IScientificResearcher scientificResearcherInterface) throws SQLException {
         this.typeOfViewToConfigure = typeOfViewToConfigure;
+        this.scientificResearcherInterface = scientificResearcherInterface;
         if (typeOfViewToConfigure == Constants.REGISTRATION_WINDOW_CODE) {
             scientificResearcherImageFile = new File("src/pollinatorconservation/images/default.png");
         } else {
+            usernameTextField.setEditable(false);
             scientificResearcherImageFile = new File("src/pollinatorconservation/images/scientificresearchers/" + username + ".jpg");
             loadScientificResearcher(username);
         }
@@ -81,6 +80,7 @@ public class FXMLScientificResearcherController implements Initializable {
         scientificResearcherImageFile = fileChooser.showOpenDialog(stage);
         loadScientificResearcherImage();
     }
+
     private void loadScientificResearcher(String username) throws SQLException {
         ScientificResearcher scientificResearcher = ScientificResearcherDAO.getScientificResearcher(username);
         nameTextField.setText(scientificResearcher.getName());
@@ -135,7 +135,6 @@ public class FXMLScientificResearcherController implements Initializable {
                 || paternalSurnameTextField.getText().isEmpty()
                 || maternalSurnameTextField.getText().isEmpty()
                 || usernameTextField.getText().isEmpty()
-                || passwordField.getText().isEmpty()
                 || professionalLicenseNumberTextField.getText().isEmpty();
     }
 
@@ -178,10 +177,6 @@ public class FXMLScientificResearcherController implements Initializable {
         graphicsOn2D.dispose();
     }
 
-    private void closePopUpWindow() {
-        Stage stage = (Stage) nameTextField.getScene().getWindow();
-        stage.close();
-    }
     private void editScientificResearcher(ScientificResearcher scientificResearcher) throws SQLException, IOException {
         int responseCode = ScientificResearcherDAO.editScientificResearcher(scientificResearcher);
         if (responseCode == Constants.CORRECT_OPERATION_CODE) {
@@ -197,8 +192,14 @@ public class FXMLScientificResearcherController implements Initializable {
         }
     }
 
+    private void closePopUpWindow() {
+        Stage stage = (Stage) nameTextField.getScene().getWindow();
+        stage.close();
+    }
+
     @FXML
     private void cancelButtonClick(ActionEvent event) {
         closePopUpWindow();
     }
+    
 }
