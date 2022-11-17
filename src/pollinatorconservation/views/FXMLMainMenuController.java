@@ -212,6 +212,19 @@ public class FXMLMainMenuController implements Initializable {
 
     @FXML
     private void editScientificResearcherButtonClick(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLScientificsResearcher.fxml"));
+        try {
+            Parent root = loader.load();
+            FXMLScientificsResearcherController scientificsResearcherController = loader.getController();
+            scientificsResearcherController.configureView(user, Constants.EDIT_WINDOW_CODE);
+            Stage stage = (Stage) registerPollinatorButton.getScene().getWindow();
+            Scene registerScientificsResearcherView = new Scene(root);
+            stage.setScene(registerScientificsResearcherView);
+            stage.setTitle("Investigadores científicos.");
+            stage.show();
+        } catch (IOException exception) {
+            System.err.println("Error loading the \"Scientifics Researcher.\" window...");
+        }
     }
 
     @FXML

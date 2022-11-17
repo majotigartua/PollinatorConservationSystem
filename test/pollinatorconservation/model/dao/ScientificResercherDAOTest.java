@@ -2,6 +2,7 @@ package pollinatorconservation.model.dao;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -30,10 +31,31 @@ public class ScientificResercherDAOTest {
         scientificResearcher.setRole(role);
     }
 
+
     @Test
     public void registerScientificResearcherTest() throws SQLException {
         int responseCode = ScientificResearcherDAO.registerScientificResearcher(scientificResearcher);
         assertEquals(responseCode, Constants.CORRECT_OPERATION_CODE);
     }
+    @Test
+    public void editScientificResearcherTest() throws SQLException {
+        int responseCode = ScientificResearcherDAO.editScientificResearcher(scientificResearcher);
+        assertEquals(responseCode, Constants.CORRECT_OPERATION_CODE);
+    }
+
+    @Test
+    public void deleteScientificResearcherTest() throws SQLException {
+        String username = scientificResearcher.getUsername();
+        int responseCode = ScientificResearcherDAO.deleteScientificResearcher(username);
+        assertEquals(responseCode, Constants.CORRECT_OPERATION_CODE);
+    }
+
+    @Test
+    public void getScientificResearcherTest() throws SQLException {
+        String username = scientificResearcher.getUsername();
+        ScientificResearcher test = ScientificResearcherDAO.getScientificResearcher(username);
+        assertEquals(test, scientificResearcher);
+    }
+
 
 }

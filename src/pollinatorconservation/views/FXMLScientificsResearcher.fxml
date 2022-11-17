@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLScientificsResearcherController">
+   <children>
+      <Button fx:id="editButton" disable="true" layoutX="50.0" layoutY="528.0" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="30.0" prefWidth="120.0" text="Editar" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteScientificButton" disable="true" layoutX="350.0" layoutY="528.0" mnemonicParsing="false" onAction="#deleteFloweringPlantButtonClick" prefHeight="25.0" prefWidth="200.0" text="Eliminar investigador científico" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="730.0" layoutY="528.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="120.0" text="Cancelar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="instructionLabel" layoutX="50.0" layoutY="46.0" prefHeight="20.0" prefWidth="530.0" text="Seleccione un investigador científico y dé clic en el botón de &quot;Editar&quot;.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TableView fx:id="scientificsTableView" layoutX="50.0" layoutY="90.0" prefHeight="400.0" prefWidth="800.0">
+         <columns>
+            <TableColumn fx:id="nameTableColumn" editable="false" prefWidth="303.0" style="-fx-font-size: 14;" text="Nombre(s)" />
+            <TableColumn fx:id="paternalSurnameTableColum" prefWidth="251.0" text="Apellido paterno" />
+            <TableColumn fx:id="maternalSurnameTableColum" prefWidth="245.0" text="Apellido materno" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

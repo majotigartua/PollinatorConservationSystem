@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -50,6 +51,7 @@ public class FXMLScientificResearcherController implements Initializable {
 
     private File scientificResearcherImageFile;
     private Image scientificResearcherImage;
+    private IScientificResearcher scientificResearcherInterface;
 
     int typeOfViewToConfigure;
 
@@ -57,12 +59,13 @@ public class FXMLScientificResearcherController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    public void configureView(int typeOfViewToConfigure, String username, IScientificResearcher scientificResearcherInterface) {
+    public void configureView(int typeOfViewToConfigure, String username, IScientificResearcher scientificResearcherInterface) throws SQLException {
         this.typeOfViewToConfigure = typeOfViewToConfigure;
         if (typeOfViewToConfigure == Constants.REGISTRATION_WINDOW_CODE) {
             scientificResearcherImageFile = new File("src/pollinatorconservation/images/default.png");
         } else {
-            scientificResearcherImageFile = new File("src/pollinatorconservation/images/" + username + ".jpg");
+            scientificResearcherImageFile = new File("src/pollinatorconservation/images/scientificresearchers/" + username + ".jpg");
+            loadScientificResearcher(username);
         }
         scientificResearcherImage = new Image(scientificResearcherImageFile.toURI().toString());
         imageView.setImage(scientificResearcherImage);
@@ -78,6 +81,14 @@ public class FXMLScientificResearcherController implements Initializable {
         scientificResearcherImageFile = fileChooser.showOpenDialog(stage);
         loadScientificResearcherImage();
     }
+    private void loadScientificResearcher(String username) throws SQLException {
+        ScientificResearcher scientificResearcher = ScientificResearcherDAO.getScientificResearcher(username);
+        nameTextField.setText(scientificResearcher.getName());
+        paternalSurnameTextField.setText(scientificResearcher.getPaternalSurname());
+        maternalSurnameTextField.setText(scientificResearcher.getMaternalSurname());
+        usernameTextField.setText(username);
+        professionalLicenseNumberTextField.setText(scientificResearcher.getProfessionalLicenseNumber());
+    }
 
     private void loadScientificResearcherImage() {
         if (scientificResearcherImageFile != null) {
@@ -92,7 +103,7 @@ public class FXMLScientificResearcherController implements Initializable {
     }
 
     @FXML
-    private void acceptButtonClick(ActionEvent event) throws NoSuchAlgorithmException, IOException {
+    private void acceptButtonClick(ActionEvent event) throws NoSuchAlgorithmException, IOException, SQLException {
         if (!validateEmptyFields()) {
             ScientificResearcher scientificResearcher = new ScientificResearcher();
             scientificResearcher.setName(nameTextField.getText());
@@ -110,6 +121,7 @@ public class FXMLScientificResearcherController implements Initializable {
             if (typeOfViewToConfigure == Constants.REGISTRATION_WINDOW_CODE) {
                 registerScientificResearcher(scientificResearcher);
             } else {
+                editScientificResearcher(scientificResearcher);
             }
         } else {
             Utilities.showAlert("No se puede dejar ningún campo vacío.\n\n"
@@ -169,6 +181,20 @@ public class FXMLScientificResearcherController implements Initializable {
     private void closePopUpWindow() {
         Stage stage = (Stage) nameTextField.getScene().getWindow();
         stage.close();
+    }
+    private void editScientificResearcher(ScientificResearcher scientificResearcher) throws SQLException, IOException {
+        int responseCode = ScientificResearcherDAO.editScientificResearcher(scientificResearcher);
+        if (responseCode == Constants.CORRECT_OPERATION_CODE) {
+            Utilities.showAlert("La información se registró correctamente en el sistema.\n",
+                    Alert.AlertType.INFORMATION);
+            registerScientificResearcherImage(scientificResearcher);
+            scientificResearcherInterface.updateScientificResearchers();
+            closePopUpWindow();
+        } else {
+            Utilities.showAlert("No hay conexión con la base de datos.\n\n"
+                    + "Por favor, inténtelo más tarde.\n",
+                    Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
