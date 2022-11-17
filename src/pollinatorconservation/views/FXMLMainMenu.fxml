@@ -20,39 +20,39 @@
             <ImageView fx:id="imageView" fitHeight="50.0" fitWidth="50.0" layoutX="836.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Button fx:id="registerPollinatorButton" layoutX="80.0" layoutY="117.0" mnemonicParsing="false" onAction="#registerPollinatorButtonClick" prefHeight="150.0" prefWidth="350.0" text="Registrar especie polinizadora" visible="false">
+      <Button fx:id="registerPollinatorButton" layoutX="70.0" layoutY="128.0" mnemonicParsing="false" onAction="#registerPollinatorButtonClick" prefHeight="150.0" prefWidth="350.0" text="Registrar especie polinizadora" visible="false">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="editPollinatorButton" layoutX="80.0" layoutY="306.0" mnemonicParsing="false" onAction="#editPollinatorButtonClick" prefHeight="156.0" prefWidth="350.0" text="Editar especie polinizadora" visible="false">
+      <Button fx:id="editPollinatorButton" layoutX="70.0" layoutY="317.0" mnemonicParsing="false" onAction="#editPollinatorButtonClick" prefHeight="156.0" prefWidth="350.0" text="Editar especie polinizadora" visible="false">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="consultPollinatorButton" layoutX="80.0" layoutY="117.0" mnemonicParsing="false" onAction="#consultPollinatorButtonClick" prefHeight="150.0" prefWidth="760.0" text="Consultar especie polinizadora" visible="false">
+      <Button fx:id="consultPollinatorButton" layoutX="70.0" layoutY="128.0" mnemonicParsing="false" onAction="#consultPollinatorButtonClick" prefHeight="150.0" prefWidth="760.0" text="Consultar especie polinizadora" visible="false">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="registerFloweringPlantButton" layoutX="489.0" layoutY="117.0" mnemonicParsing="false" onAction="#registerFloweringPlantButtonClick" prefHeight="150.0" prefWidth="350.0" text="Registrar planta florífera" visible="false">
+      <Button fx:id="registerFloweringPlantButton" layoutX="479.0" layoutY="128.0" mnemonicParsing="false" onAction="#registerFloweringPlantButtonClick" prefHeight="150.0" prefWidth="350.0" text="Registrar planta florífera" visible="false">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="editFloweringPlantButton" layoutX="489.0" layoutY="306.0" mnemonicParsing="false" onAction="#editFloweringPlantButtonClick" prefHeight="156.0" prefWidth="350.0" text="Editar planta florífera" visible="false">
+      <Button fx:id="editFloweringPlantButton" layoutX="479.0" layoutY="317.0" mnemonicParsing="false" onAction="#editFloweringPlantButtonClick" prefHeight="156.0" prefWidth="350.0" text="Editar planta florífera" visible="false">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="consultFloweringPlantButton" layoutX="80.0" layoutY="306.0" mnemonicParsing="false" onAction="#consultFloweringPlantButtonClick" prefHeight="156.0" prefWidth="760.0" text="Consultar planta florífera" visible="false">
+      <Button fx:id="consultFloweringPlantButton" layoutX="70.0" layoutY="317.0" mnemonicParsing="false" onAction="#consultFloweringPlantButtonClick" prefHeight="156.0" prefWidth="760.0" text="Consultar planta florífera" visible="false">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="registerScientificResearcherButton" layoutX="80.0" layoutY="117.0" mnemonicParsing="false" onAction="#registerScientificResearcherButtonClick" prefHeight="150.0" prefWidth="760.0" text="Registrar investigador científico" visible="false">
+      <Button fx:id="registerScientificResearcherButton" layoutX="70.0" layoutY="128.0" mnemonicParsing="false" onAction="#registerScientificResearcherButtonClick" prefHeight="150.0" prefWidth="760.0" text="Registrar investigador científico" visible="false">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="editScientificResearcherButton" layoutX="80.0" layoutY="306.0" mnemonicParsing="false" onAction="#editScientificResearcherButtonClick" prefHeight="156.0" prefWidth="760.0" text="Editar investigador científico" visible="false">
+      <Button fx:id="editScientificResearcherButton" layoutX="70.0" layoutY="317.0" mnemonicParsing="false" onAction="#editScientificResearcherButtonClick" prefHeight="156.0" prefWidth="760.0" text="Editar investigador científico" visible="false">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="390.0" layoutY="535.0" mnemonicParsing="false" onAction="#signOutButtonClick" prefHeight="25.0" prefWidth="120.0" text="Cerrar sesión">
+      <Button layoutX="390.0" layoutY="524.0" mnemonicParsing="false" onAction="#signOutButtonClick" prefHeight="25.0" prefWidth="120.0" text="Cerrar sesión">
          <font>
             <Font size="14.0" />
          </font></Button>
