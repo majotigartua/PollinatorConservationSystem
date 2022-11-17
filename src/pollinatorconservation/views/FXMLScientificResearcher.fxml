@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pollinatorconservation.views.FXMLScientificResearcherController">
    <children>
-      <Label fx:id="instructionLabel" layoutX="27.0" layoutY="35.0" prefHeight="20.0" prefWidth="557.0" text="Ingrese la información del investigador científico y dé clic en el botón de &quot;Aceptar&quot;.">
+      <Label layoutX="27.0" layoutY="35.0" prefHeight="20.0" prefWidth="557.0" text="Ingrese la información del investigador científico y dé clic en el botón de &quot;Aceptar&quot;.">
          <font>
             <Font size="14.0" />
          </font>

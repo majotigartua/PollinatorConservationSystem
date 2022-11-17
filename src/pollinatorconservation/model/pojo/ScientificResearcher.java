@@ -25,11 +25,7 @@ public class ScientificResearcher extends User {
                 ScientificResearcher scientificResearcher = (ScientificResearcher) object;
                 isEquals = (this.getName().equals(scientificResearcher.getName())
                         && this.getPaternalSurname().equals(scientificResearcher.getPaternalSurname())
-                        && this.getMaternalSurname().equals(scientificResearcher.getMaternalSurname())
-                        && this.getUsername().equals(scientificResearcher.getUsername())
-                        && this.getPassword().equals(scientificResearcher.getPassword())
-                        && this.getProfessionalLicenseNumber().equals(scientificResearcher.getProfessionalLicenseNumber())
-                        && this.getRole() == scientificResearcher.getRole());
+                        && this.getMaternalSurname().equals(scientificResearcher.getMaternalSurname()));
             }
         }
         return isEquals;
