@@ -183,13 +183,8 @@ public class FXMLPollinatorController implements Initializable {
 
     private void loadPollinatorImage() {
         if (pollinatorImageFile != null) {
-            try {
-                BufferedImage bufferedImage = ImageIO.read(pollinatorImageFile);
-                pollinatorImage = SwingFXUtils.toFXImage(bufferedImage, null);
-                imageView.setImage(pollinatorImage);
-            } catch (IOException exception) {
-                System.err.println("Error loading flowering plant image...");
-            }
+            pollinatorImage = new Image(pollinatorImageFile.toURI().toString());
+            imageView.setImage(pollinatorImage);
         }
     }
 

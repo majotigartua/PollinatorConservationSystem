@@ -183,13 +183,8 @@ public class FXMLFloweringPlantController implements Initializable {
 
     private void loadFloweringPlantImage() {
         if (floweringPlantImageFile != null) {
-            try {
-                BufferedImage bufferedImage = ImageIO.read(floweringPlantImageFile);
-                floweringPlantImage = SwingFXUtils.toFXImage(bufferedImage, null);
-                imageView.setImage(floweringPlantImage);
-            } catch (IOException exception) {
-                System.err.println("Error loading flowering plant image...");
-            }
+            floweringPlantImage = new Image(floweringPlantImageFile.toURI().toString());
+            imageView.setImage(floweringPlantImage);
         }
     }
 

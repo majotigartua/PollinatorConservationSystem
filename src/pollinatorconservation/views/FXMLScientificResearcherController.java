@@ -92,13 +92,8 @@ public class FXMLScientificResearcherController implements Initializable {
 
     private void loadScientificResearcherImage() {
         if (scientificResearcherImageFile != null) {
-            try {
-                BufferedImage bufferedImage = ImageIO.read(scientificResearcherImageFile);
-                scientificResearcherImage = SwingFXUtils.toFXImage(bufferedImage, null);
-                imageView.setImage(scientificResearcherImage);
-            } catch (IOException exception) {
-                System.err.println("Error loading flowering plant image...");
-            }
+            scientificResearcherImage = new Image(scientificResearcherImageFile.toURI().toString());
+            imageView.setImage(scientificResearcherImage);
         }
     }
 
@@ -201,5 +196,5 @@ public class FXMLScientificResearcherController implements Initializable {
     private void cancelButtonClick(ActionEvent event) {
         closePopUpWindow();
     }
-    
+
 }
